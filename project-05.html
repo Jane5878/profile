@@ -1,710 +1,570 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P05 電商 B2B 平台 — Jane Chiang Portfolio</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg: #f5f8fd;
-            --bg-2: #e9ecef;
-            --bg-3: #dde2e6;
-            --white: #fff;
-            --ink: #272829;
-            --ink-2: #45505b;
-            --ink-3: #728394;
-            --accent: #149ddd;
-            --accent-2: #1080ca;
-            --accent-light: #dff3fc;
-            --accent-bg: #eaf6fd;
-            --rule: #eef0f2;
-            --sans: 'Outfit', sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-            --r: 4px;
-            --r-lg: 8px;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P05 O2O 商家管理系統 — Jane Chiang Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f8fd;--bg-2:#e9ecef;--white:#fff;
+  --ink:#272829;--ink-2:#45505b;--ink-3:#728394;
+  --accent:#0f7adb;--accent-2:#0a5fad;--accent-light:#dbeeff;--accent-bg:#eaf3ff;
+  --rule:#eef0f2;
+  --teal:#0db5a3;--teal-light:#d4f5f1;
+  --amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f05c5c;--coral-light:#fde8e8;
+  --violet:#7c3aed;
+  --sans:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:4px;--r-lg:10px;--r-xl:16px;
+  --shadow:0 4px 20px rgba(0,0,0,.06);--shadow-lg:0 8px 30px rgba(0,0,0,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:60px;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink-2);font-size:14px;font-weight:500;transition:.3s}
+.nav-back:hover{color:var(--accent)}
+.nav-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-brand{font-weight:600;font-size:18px;color:var(--ink)}
+.nav-badge{font-family:var(--mono);font-size:11px;background:var(--accent-light);color:var(--accent);padding:4px 12px;border-radius:100px;font-weight:600}
 
-        html {
-            scroll-behavior: smooth;
-        }
+/* HERO */
+.proj-hero{margin-top:60px;padding:72px 52px 52px;background:linear-gradient(135deg,#0a1628 0%,#0f3460 50%,#0f7adb 100%);position:relative;overflow:hidden}
+.proj-hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto}
+.proj-hero-eyebrow{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.proj-hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--teal)}
+.proj-hero-title{font-size:clamp(34px,5vw,54px);font-weight:700;line-height:1.1;color:#fff;margin-bottom:14px}
+.proj-hero-title em{color:var(--teal);font-style:normal;font-weight:400}
+.proj-hero-sub{font-size:15px;color:rgba(255,255,255,.72);margin-bottom:36px;max-width:620px;line-height:1.8}
+.meta-row{display:flex;gap:40px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+.meta-item{display:flex;flex-direction:column;gap:5px}
+.meta-lbl{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em}
+.meta-val{font-size:15px;font-weight:600;color:#fff}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chip{font-family:var(--mono);font-size:11px;padding:5px 14px;border-radius:100px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.15);font-weight:500}
+.chip.teal{background:rgba(13,181,163,.2);color:#7eeee4;border-color:rgba(13,181,163,.3)}
+.chip.amber{background:rgba(245,158,11,.2);color:#fcd34d;border-color:rgba(245,158,11,.3)}
 
-        body {
-            font-family: var(--sans);
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
+/* LAYOUT */
+.page-body{max-width:1080px;margin:0 auto;padding:56px 52px}
+.card{background:var(--white);border-radius:var(--r-xl);margin-bottom:28px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--rule)}
+.card-head{padding:18px 28px;background:linear-gradient(90deg,#f8f9ff,#f0f4ff);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:14px}
+.card-num{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.card-head-title{font-size:19px;font-weight:600;color:#0f2244;line-height:1.2}
+.card-head-sub{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin-left:auto}
+.card-body{padding:28px}
 
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 200;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--rule);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 52px;
-            height: 60px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-        }
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.full{grid-column:span 2}
 
-        .nav-back {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--ink-2);
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+/* BOXES */
+.box{background:var(--bg);border-radius:var(--r-lg);padding:22px;border:1px solid var(--rule)}
+.box.ba{border-left:3px solid var(--accent)}
+.box.bt{border-left:3px solid var(--teal)}
+.box.bam{border-left:3px solid var(--amber)}
+.box-lbl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.box-lbl.a{color:var(--accent)}.box-lbl.t{color:var(--teal)}.box-lbl.am{color:var(--amber)}.box-lbl.co{color:var(--coral)}
+.box p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.bl-list{list-style:none}
+.bl-list li{display:flex;gap:10px;font-size:14px;color:var(--ink-2);padding:9px 0;border-bottom:1px solid var(--rule);line-height:1.6}
+.bl-list li:last-child{border-bottom:none;padding-bottom:0}
+.mk{font-weight:700;flex-shrink:0}
+.mk.a{color:var(--accent)}.mk.t{color:var(--teal)}.mk.am{color:var(--amber)}.mk.co{color:var(--coral)}.mk.v{color:var(--violet)}
 
-        .nav-back:hover {
-            color: var(--accent);
-        }
+/* ROLE TABLE */
+.rtable{border:1px solid var(--rule);border-radius:var(--r-lg);overflow:hidden}
+.rrow{display:grid;grid-template-columns:200px 1fr}
+.rrow+.rrow{border-top:1px solid var(--rule)}
+.rk{background:#f7f9ff;padding:16px 20px;font-size:14px;font-weight:600;color:#0f2244;border-right:1px solid var(--rule)}
+.rv{background:var(--white);padding:16px 20px;font-size:14px;color:var(--ink-2);line-height:1.75}
 
-        .nav-back svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+/* MODULE CARDS */
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mod{background:var(--white);border:1px solid var(--rule);border-radius:var(--r-lg);overflow:hidden}
+.mod-hd{padding:14px 18px;display:flex;align-items:center;gap:12px}
+.mod-hd.b{background:linear-gradient(90deg,#dbeeff,#e8f3ff)}
+.mod-hd.t{background:linear-gradient(90deg,#d4f5f1,#e0f9f6)}
+.mod-hd.am{background:linear-gradient(90deg,#fef3c7,#fef9e7)}
+.mod-hd.co{background:linear-gradient(90deg,#fde8e8,#fff0f0)}
+.mod-hd.v{background:linear-gradient(90deg,#ede9fe,#f3f0ff)}
+.mod-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mi-b{background:var(--accent)}.mi-t{background:var(--teal)}.mi-am{background:var(--amber)}.mi-co{background:var(--coral)}.mi-v{background:var(--violet)}
+.mod-title{font-size:15px;font-weight:600;color:#0f2244}
+.mod-sub{font-size:11px;color:var(--ink-3);font-family:var(--mono)}
+.mod-bd{padding:16px 18px}
+.fl{list-style:none}
+.fl li{font-size:13.5px;color:var(--ink-2);padding:7px 0;border-bottom:1px solid var(--rule);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.fl li:last-child{border-bottom:none}
+.fd{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.fd.a{background:var(--accent)}.fd.t{background:var(--teal)}.fd.am{background:var(--amber)}.fd.co{background:var(--coral)}.fd.v{background:var(--violet)}
 
-        .nav-brand {
-            font-weight: 600;
-            font-size: 18px;
-            color: var(--ink);
-        }
+/* PRICING TABLE */
+.ptable{width:100%;border-collapse:collapse;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--rule)}
+.ptable thead tr{background:#0f2244;color:#fff}
+.ptable th{padding:13px 18px;text-align:left;font-size:13px;font-weight:600;font-family:var(--mono)}
+.ptable td{padding:13px 18px;font-size:14px;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+.ptable tbody tr:last-child td{border-bottom:none}
+.ptable tbody tr:nth-child(even) td{background:#f8f9ff}
+.hl{color:var(--accent);font-weight:600}
+.fm{font-family:var(--mono);font-size:12px;background:var(--accent-light);color:var(--accent);padding:3px 8px;border-radius:4px;display:inline-block}
 
-        .nav-badge {
-            font-family: var(--mono);
-            font-size: 12px;
-            background: var(--accent-light);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-weight: 600;
-        }
+/* FLOW */
+.flow{display:flex;align-items:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;gap:0}
+.fstep{display:flex;flex-direction:column;align-items:center;min-width:110px;flex:1}
+.fcircle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;position:relative;z-index:1}
+.fc-a{background:var(--accent);box-shadow:0 4px 12px rgba(15,122,219,.3)}
+.fc-t{background:var(--teal);box-shadow:0 4px 12px rgba(13,181,163,.3)}
+.fc-am{background:var(--amber);box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.fc-co{background:var(--coral);box-shadow:0 4px 12px rgba(240,92,92,.3)}
+.flbl{font-size:13px;font-weight:600;color:#0f2244;margin-top:10px;text-align:center}
+.fsub{font-size:11px;color:var(--ink-3);margin-top:4px;text-align:center;line-height:1.4}
+.farrow{font-size:24px;color:#cdd5e0;margin:13px -4px 0;flex-shrink:0}
 
-        /* HERO BANNER */
-        .proj-hero {
-            margin-top: 60px;
-            min-height: auto;
-            padding: 80px 52px 60px;
-            background: var(--white);
-            border-bottom: 1px solid var(--rule);
-            position: relative;
-            overflow: hidden;
-        }
+/* IMPACT */
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.imp-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--r-lg);padding:22px 20px;text-align:center;position:relative;overflow:hidden}
+.imp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.imp-card.b::before{background:var(--accent)}
+.imp-card.t::before{background:var(--teal)}
+.imp-card.am::before{background:var(--amber)}
+.imp-stat{font-size:38px;font-weight:700;line-height:1;margin-bottom:6px}
+.imp-stat.a{color:var(--accent)}.imp-stat.t{color:var(--teal)}.imp-stat.am{color:var(--amber)}
+.imp-unit{font-size:18px}
+.imp-lbl{font-size:13px;color:var(--ink-2);line-height:1.5}
+.imp-sub{font-size:11px;color:var(--ink-3);margin-top:4px;font-family:var(--mono)}
 
-        .proj-hero-inner {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+/* PERM TABLE */
+.permtable{width:100%;border-collapse:collapse;border:1px solid var(--rule);border-radius:var(--r-lg);overflow:hidden}
+.permtable th{background:#0f2244;color:#fff;padding:12px 16px;font-size:13px;text-align:left;font-family:var(--mono)}
+.permtable td{padding:12px 16px;font-size:13.5px;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.permtable tbody tr:last-child td{border-bottom:none}
+.permtable tbody tr:nth-child(even) td{background:#f8f9ff}
+.bdg{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:var(--mono);padding:3px 9px;border-radius:100px;font-weight:600}
+.bdg.g{background:var(--teal-light);color:#0a8f81}
+.bdg.b{background:var(--accent-light);color:var(--accent)}
+.bdg.am{background:var(--amber-light);color:#b45309}
+.bdg.r{background:var(--coral-light);color:var(--coral)}
 
-        .proj-hero-eyebrow {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--accent);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
+/* DOC GALLERY */
+.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.doc-frame{background:var(--white);border:1px solid var(--rule);border-radius:var(--r-lg);aspect-ratio:4/3;overflow:hidden;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}
+.doc-frame:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.doc-frame img{width:100%;height:100%;object-fit:contain}
+.doc-cap{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-align:center;margin-top:10px}
 
-        .proj-hero-eyebrow::before {
-            content: '';
-            width: 24px;
-            height: 2px;
-            background: var(--accent);
-        }
+/* NAV FOOTER */
+.proj-nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0;margin-top:8px}
+.proj-nav-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-2);font-size:14px;font-weight:600;transition:.3s}
+.proj-nav-link:hover{color:var(--accent)}
+footer{background:var(--white);border-top:1px solid var(--rule);padding:28px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:15px}
+.footer-copy{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
 
-        .proj-hero-title {
-            font-size: clamp(36px, 5vw, 54px);
-            font-weight: 700;
-            line-height: 1.1;
-            color: #173b6c;
-            margin-bottom: 12px;
-        }
-
-        .proj-hero-title em {
-            color: var(--accent);
-            font-style: normal;
-            font-weight: 500;
-        }
-
-        .proj-hero-sub {
-            font-size: 16px;
-            color: var(--ink-2);
-            margin-bottom: 30px;
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        .meta-row {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding-top: 20px;
-            border-top: 1px solid var(--rule);
-        }
-
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .meta-lbl {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--ink-3);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 500;
-        }
-
-        .meta-val {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--ink);
-        }
-
-        .chips-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 25px;
-        }
-
-        .chip {
-            font-family: var(--mono);
-            font-size: 12px;
-            padding: 6px 14px;
-            border-radius: 100px;
-            background: var(--accent-light);
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* MAIN LAYOUT */
-        .page-body {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 60px 52px;
-        }
-
-        /* SECTION CARDS */
-        .card {
-            background: var(--white);
-            border-radius: var(--r-lg);
-            margin-bottom: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .card-head {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-bottom: 1px solid var(--rule);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-head-num {
-            font-family: var(--mono);
-            font-size: 13px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .card-head-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #173b6c;
-        }
-
-        .card-head-sub {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--ink-3);
-            margin-left: auto;
-        }
-
-        .card-body {
-            padding: 30px;
-        }
-
-        /* OVERVIEW & COLUMNS */
-        .overview-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .ov-box {
-            background: var(--bg);
-            border-radius: var(--r-lg);
-            padding: 25px;
-        }
-
-        .ov-box.full {
-            grid-column: span 2;
-        }
-
-        .ov-label {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .ov-box p {
-            font-size: 15px;
-            color: var(--ink-2);
-            line-height: 1.75;
-        }
-
-        .ov-list {
-            list-style: none;
-        }
-
-        .ov-list li {
-            display: flex;
-            gap: 12px;
-            font-size: 14.5px;
-            color: var(--ink-2);
-            padding: 10px 0;
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .ov-list li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .bl {
-            color: var(--accent);
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        /* ROLE TABLE */
-        .role-grid {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 0;
-            border: 1px solid var(--rule);
-            border-radius: var(--r-lg);
-            overflow: hidden;
-        }
-
-        .role-row {
-            display: contents;
-        }
-
-        .role-row > div {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--rule);
-            font-size: 14.5px;
-        }
-
-        .role-row:last-child > div {
-            border-bottom: none;
-        }
-
-        .role-key {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #173b6c;
-        }
-
-        .role-val {
-            background: var(--white);
-            color: var(--ink-2);
-            line-height: 1.7;
-        }
-
-        /* DOCUMENT GALLERY */
-        .doc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .doc-frame {
-            background: var(--white);
-            border: 1px solid var(--rule);
-            border-radius: var(--r-lg);
-            aspect-ratio: 4/3;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.3s;
-        }
-
-        .doc-frame:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .doc-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .doc-cap {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--ink-3);
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* PAGINATION */
-        .proj-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px 0;
-            margin-top: 10px;
-        }
-
-        .proj-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--ink-2);
-            font-size: 14px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .proj-nav-link:hover {
-            color: var(--accent);
-        }
-
-        /* FOOTER */
-        footer {
-            background: var(--white);
-            border-top: 1px solid var(--rule);
-            padding: 30px 52px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .footer-copy {
-            font-family: var(--mono);
-            font-size: 12px;
-            color: var(--ink-3);
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:900px) {
-            nav {
-                padding: 0 24px;
-            }
-
-            .proj-hero {
-                padding: 60px 24px 40px;
-            }
-
-            .page-body {
-                padding: 40px 24px;
-            }
-
-            .overview-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ov-box.full {
-                grid-column: span 1;
-            }
-
-            .doc-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .role-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .role-key {
-                border-bottom: none !important;
-            }
-
-            footer {
-                padding: 24px;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .proj-hero{padding:56px 20px 36px}
+  .page-body{padding:36px 20px}
+  .g2,.mod-grid{grid-template-columns:1fr}
+  .full{grid-column:span 1}
+  .imp-grid{grid-template-columns:1fr 1fr}
+  .doc-grid{grid-template-columns:1fr 1fr}
+  .rrow{grid-template-columns:1fr}
+  .rk{border-right:none;border-bottom:1px solid var(--rule)}
+  footer{padding:20px}
+}
+@media(max-width:580px){
+  .imp-grid{grid-template-columns:1fr}
+  .flow{flex-direction:column;align-items:flex-start;gap:10px}
+  .farrow{transform:rotate(90deg);margin:0 0 0 23px}
+}
+</style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <a class="nav-back" href="index.html#projects">
-            <svg viewBox="0 0 24 24">
-                <polyline points="15 18 9 12 15 6" />
-            </svg>
-            返回作品集
-        </a>
-        <span class="nav-brand">Jane Chiang</span>
-        <span class="nav-badge">P05 · O2O · Merchant Backend</span>
-    </nav>
+<nav>
+  <a class="nav-back" href="index.html#projects">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    返回作品集
+  </a>
+  <span class="nav-brand">Jane Chiang</span>
+  <span class="nav-badge">P05 · O2O · B2B</span>
+</nav>
 
-    <!-- HERO -->
-    <div class="proj-hero">
-        <div class="proj-hero-inner">
-            <div class="proj-hero-eyebrow">P05 · B2B · Merchant Backend</div>
-            <h1 class="proj-hero-title">O2O 商家管理系統<br><em>Merchant Management System</em></h1>
-            <p class="proj-hero-sub">提供合作商家自主管理商品生命週期、訂單追蹤、電子憑證核銷與自動化帳務結算，建立高效的平台運營生態。</p>
-            <div class="meta-row">
-                <div class="meta-item">
-                    <div class="meta-lbl">Platform</div>
-                    <div class="meta-val">B2B Web Portal / Mobile App</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-lbl">My Role</div>
-                    <div class="meta-val">Product Manager</div>
-                </div>
-            </div>
-            <div class="chips-row">
-                <span class="chip">O2O Ecosystem</span>
-                <span class="chip">B2B SaaS</span>
-            <!-- 01 OVERVIEW -->
-        <div class="card">
-            <div class="card-head">
-                <span class="card-head-num">01</span>
-                <span class="card-head-title">專案概述</span>
-                <span class="card-head-sub">Project Overview</span>
-            </div>
-            <div class="card-body">
-                <div class="overview-grid">
-                    <div class="ov-box full">
-                        <div class="ov-label">背景 Background</div>
-                        <p>本專案為 O2O 領先平台 (GOMAJI) 的商家端後台系統。隨着商家數位化需求增加，系統必須支撐商家自主營運，範圍涵蓋商品動態上架、訂單即時監控、現場憑證核銷以及複雜的帳務對帳流程，旨在降低平台營運成本並提升商家黏著度。</p>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">核心目標 Goals</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">→</span>引導商家自主管理商品生命週期與促銷方案</li>
-                            <li><span class="bl">→</span>優化現場憑證核銷流程，確保支付與履約安全性</li>
-                            <li><span class="bl">→</span>帳務自動化處理，大幅縮短人工對帳與撥款時效</li>
-                        </ul>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">運作規模 Scale</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">·</span>用戶群體：全台萬家以上的 O2O 合作商家</li>
-                            <li><span class="bl">·</span>核心價值：數位化轉型與作業自動化</li>
-                            <li><span class="bl">·</span>系統穩定：支撐每日數萬筆訂單與核銷動作</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>�現況 Scope</div>
-                        <ul class="box-list">
-                            <li><span class="bl">·</span>性質：B2B CRM 平台整體規劃</li>
-                            <li><span class="bl">·</span>階段：上線運作 (Product Live)</li>
-                            <li><span class="bl">·</span>成就：獲多家知名連鎖品牌簽約採用</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 02 MY ROLE -->
-        <div class="card">
-            <div class="card-head">
-                <span class="card-head-num">02</span>
-                <span class="card-head-title">我的角色與職責</span>
-                <span class="card-head-sub">My Role & Responsibilities</span>
-            </div>
-            <div class="card-body">
-                <div class="role-grid">
-                    <div class="role-row">
-                        <div class="role-key">產品功能規劃</div>
-                        <div class="role-val">負責商家後台與商家 APP 的功能規格定義 (Spec)，優化商家的 User Journey。</div>
-                    </div>
-                    <div class="role-row">
-                        <div class="role-key">業務邏輯梳理</div>
-                        <div class="role-val">設計複雜的電子憑證核銷與帳務结算邏輯，確保平台與各商家間的結算數據零誤差。</div>
-                    </div>
-                    <div class="role-row">
-                        <div class="role-key">跨團隊協作</div>
-                        <div class="role-val">協調 RD 與 UI/UX 團隊，控管開發進度並進行 UAT 測試，確保系統穩定上線。</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 03 CORE MODULES -->
-        <div class="card">
-            <div class="card-head">
-                <span class="card-head-num">03</span>
-                <span class="card-head-title">核心功能模組</span>
-                <span class="card-head-sub">Core Modules</span>
-            </div>
-            <div class="card-body">
-                <div class="overview-grid">
-                    <div class="ov-box">
-                        <div class="ov-label">銷售與商品管理</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">→</span>自主上架：商家可彈性設定方案與價格</li>
-                            <li><span class="bl">→</span>訂單追蹤：即時監察銷售動態與消費者資訊</li>
-                        </ul>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">憑證核銷 (O2O 核心)</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">→</span>多渠道核銷：支援 Web 與 APP 掃碼验证</li>
-                            <li><span class="bl">→</span>即時入帳：核銷完成即觸發後續結算流程</li>
-                        </ul>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">帳務結算系統</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">→</span>自動對帳：產出透明的結算單與報表</li>
-                            <li><span class="bl">→</span>資金控管：追蹤各期撥款狀態與手續費</li>
-                        </ul>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">客服與維運</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">→</span>案件追蹤：集中處理消費者退貨與爭議</li>
-                            <li><span class="bl">→</span>商家溝通：平台與商家間的正式對策管道</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 04 RESULTS -->
-        <div class="card">
-            <div class="card-head">
-                <span class="card-head-num">04</span>
-                <span class="card-head-title">成果與價值</span>
-                <span class="card-head-sub">Impact & Value</span>
-            </div>
-            <div class="card-body">
-                <div class="overview-grid" style="margin-bottom:24px;">
-                    <div class="ov-box">
-                        <div class="ov-label">營運效益 Impact</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">📈</span>作業自動化：降低 50% 以上的人工對帳成本</li>
-                            <li><span class="bl">📈</span>營運即時性：商家可即時反應市場需求調整價格</li>
-                        </ul>
-                    </div>
-                    <div class="ov-box">
-                        <div class="ov-label">系統資產 Assets</div>
-                        <ul class="ov-list">
-                            <li><span class="bl">✓</span>嚴謹核銷：建立平台與商家間的履約信任機制</li>
-                            <li><span class="bl">✓</span>數據資產：累積萬家商家的營運數據分析基礎</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 05 DOCUMENTS -->
-        <div class="card">
-            <div class="card-head">
-                <span class="card-head-num">05</span>
-                <span class="card-head-title">文件展示</span>
-                <span class="card-head-sub">System Snapshots</span>
-            </div>
-            <div class="card-body">
-                <div class="doc-grid">
-                    <div>
-                        <div class="doc-frame">
-                            <img src="images/5/截圖 2021-07-13 下午11.39.50.png" alt="CRM Dashboard">
-                        </div>
-                        <div class="doc-cap">商家後台：訂單與銷售概況</div>
-                    </div>
-                    <div>
-                        <div class="doc-frame">
-                            <img src="images/5/截圖 2021-07-13 下午11.41.20.png" alt="Product Management">
-                        </div>
-                        <div class="doc-cap">商品管理：方案與母子項目設定</div>
-                    </div>
-                    <div>
-                        <div class="doc-frame">
-                            <img src="images/5/截圖 2023-03-14 下午5.26.30.png" alt="Analytics">
-                        </div>
-                        <div class="doc-cap">核銷紀錄：即時憑證驗證與報表</div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- PAGINATION -->
-        <div class="proj-nav">
-            <a href="project-04.html" class="proj-nav-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6" />
-                </svg>
-                <span>Previous Project</span>
-            </a>
-            <a href="project-06.html" class="proj-nav-link">
-                <span>Next Project</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6" />
-                </svg>
-            </a>
-        </div>
-
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-hero-eyebrow">P05 · B2B · O2O Platform · 17Life 商家後台</div>
+    <h1 class="proj-hero-title">O2O 商家管理系統<br><em>Merchant Management System</em></h1>
+    <p class="proj-hero-sub">為 17Life 萬家合作商家打造完整的自主營運後台，涵蓋帳號權限、商品上架、訂單追蹤、現場憑證核銷到帳務自動對帳，實現平台與商家的高效共贏生態。</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-lbl">Company</div><div class="meta-val">17Life 康太數位整合</div></div>
+      <div class="meta-item"><div class="meta-lbl">Platform</div><div class="meta-val">Web Portal + Merchant APP</div></div>
+      <div class="meta-item"><div class="meta-lbl">My Role</div><div class="meta-val">B2B Product Manager</div></div>
+      <div class="meta-item"><div class="meta-lbl">Timeline</div><div class="meta-val">2021.05 – 2021.08</div></div>
     </div>
+    <div class="chips-row">
+      <span class="chip">O2O Ecosystem</span>
+      <span class="chip teal">B2B SaaS</span>
+      <span class="chip">Merchant Backend</span>
+      <span class="chip teal">Voucher Verification</span>
+      <span class="chip amber">Financial Settlement</span>
+      <span class="chip">Roadmap Planning</span>
+    </div>
+  </div>
+</div>
 
-    <footer>
-        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
-        <a class="footer-back" href="index.html#projects"
-            style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to
-            Portfolio</a>
-    </footer>
+<div class="page-body">
+
+  <!-- 01 OVERVIEW -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--accent)">01</div>
+      <span class="card-head-title">專案概述</span>
+      <span class="card-head-sub">Project Overview</span>
+    </div>
+    <div class="card-body">
+      <div class="g2">
+        <div class="box ba full">
+          <div class="box-lbl a">背景 Background</div>
+          <p>17Life（前身為 GOMAJI 夠麻吉）是台灣知名 O2O 電商平台，擁有全台 10,000+ 家合作商家，涵蓋餐飲、住宿、休閒娛樂等各類生活服務。隨著商家數位化需求提升，平台需要提供一套完整的 B2B 自主管理後台，讓商家能獨立管理商品生命週期、即時追蹤訂單、在現場快速核銷電子憑證，並透過自動化帳務系統完成月結對帳，降低平台人工運維成本，同時增強商家黏著度。</p>
+        </div>
+        <div class="box">
+          <div class="box-lbl a">核心目標 Goals</div>
+          <ul class="bl-list">
+            <li><span class="mk a">→</span> 讓商家自主上架，彈性管理商品方案與促銷定價</li>
+            <li><span class="mk a">→</span> 優化現場憑證核銷，確保 O2O 支付與履約安全</li>
+            <li><span class="mk a">→</span> 帳務全自動化，縮短人工對帳與撥款時效</li>
+            <li><span class="mk a">→</span> 建立完善的客服案件追蹤與退貨處理機制</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-lbl t">平台規模 Scale</div>
+          <ul class="bl-list">
+            <li><span class="mk t">·</span> 合作商家：全台 10,000+ 家 O2O 商家</li>
+            <li><span class="mk t">·</span> 每日支撐數萬筆訂單與核銷動作</li>
+            <li><span class="mk t">·</span> 單帳號支援多分店、多員工角色管理</li>
+            <li><span class="mk t">·</span> 狀態：Product Live，已正式上線</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 MY ROLE -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--accent)">02</div>
+      <span class="card-head-title">我的角色與職責</span>
+      <span class="card-head-sub">My Role & Responsibilities</span>
+    </div>
+    <div class="card-body">
+      <div class="rtable">
+        <div class="rrow"><div class="rk">產品策略與 Roadmap</div><div class="rv">調研商家實際痛點，制定 B2B 產品線季度 Roadmap；協調業務、技術、運營多方需求，確立每次迭代的優先順序與驗收標準。</div></div>
+        <div class="rrow"><div class="rk">功能規格定義</div><div class="rv">撰寫商家後台（Web）與商家 APP 完整功能規格書（PRD），定義帳號管理、商品管理、訂單核銷、帳務結算等核心模組的業務邏輯與互動流程。</div></div>
+        <div class="rrow"><div class="rk">業務邏輯設計</div><div class="rv">梳理複雜的電子憑證核銷規則（含 QR Code、條碼、API 對接），設計進貨價／銷售價／毛利率計算邏輯，確保平台與商家結算數據零誤差。</div></div>
+        <div class="rrow"><div class="rk">原型設計與易用性測試</div><div class="rv">基於商家實際操作場景繪製 Wireframe 與互動原型，針對現場核銷等高頻功能進行易用性測試，降低商家學習成本。</div></div>
+        <div class="rrow"><div class="rk">跨團隊協作與 UAT</div><div class="rv">協調 RD、UI/UX 與 QA 團隊，控管開發進度並主導 UAT 測試，確保每個功能版本穩定上線；對接業務與客服收集商家回饋後排入後續迭代。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 CORE MODULES -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--teal)">03</div>
+      <span class="card-head-title">核心功能模組</span>
+      <span class="card-head-sub">Core Feature Modules</span>
+    </div>
+    <div class="card-body">
+      <div class="mod-grid">
+
+        <div class="mod">
+          <div class="mod-hd b">
+            <div class="mod-icon mi-b">🔐</div>
+            <div><div class="mod-title">帳號與權限管理</div><div class="mod-sub">Account & Permission</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd a"></span>Email 登入，支援密碼重設與安全驗證</li>
+              <li><span class="fd a"></span>主帳號可開立子帳號，分配指定分店或模組存取權限</li>
+              <li><span class="fd a"></span>角色管理：老闆（全功能）/ 店長 / 員工（核銷限定）</li>
+              <li><span class="fd a"></span>同一帳號可切換管理旗下所有門市</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-hd t">
+            <div class="mod-icon mi-t">🛍️</div>
+            <div><div class="mod-title">商品管理</div><div class="mod-sub">Product Management</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd t"></span>自主上架：設定方案名稱、行銷標語、有效日期與銷售數量</li>
+              <li><span class="fd t"></span>母子商品架構：主方案下設多種子項目（如 A／B 套餐）</li>
+              <li><span class="fd t"></span>支援 QR Code、贈禮、咖啡寄杯券、餘額券等多種憑證類型</li>
+              <li><span class="fd t"></span>商品狀態全流程：草稿 → 審核中 → 上架 → 下架</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-hd am">
+            <div class="mod-icon mi-am">📋</div>
+            <div><div class="mod-title">訂單管理</div><div class="mod-sub">Order Management</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd am"></span>多維度篩選：依訂單狀態、商品類型（憑證／宅配）、銷售渠道查詢</li>
+              <li><span class="fd am"></span>消費者資訊：訂購人姓名、聯絡方式與購買明細</li>
+              <li><span class="fd am"></span>即時監控：新訂單推播通知，掌握銷售動態</li>
+              <li><span class="fd am"></span>資料匯出：支援報表下載供商家自行彙整</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-hd co">
+            <div class="mod-icon mi-co">✅</div>
+            <div><div class="mod-title">電子憑證核銷</div><div class="mod-sub">Voucher Verification (O2O Core)</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd co"></span>多渠道核銷：Web 後台手動輸入 ＋ 商家 APP 掃碼驗證</li>
+              <li><span class="fd co"></span>手動核銷：選擇分店後輸入憑證碼完成驗證</li>
+              <li><span class="fd co"></span>取消核銷：誤操作可撤回，保障雙方權益</li>
+              <li><span class="fd co"></span>API 對接：串接 POS 時手動核銷停用，確保數據一致性</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-hd b">
+            <div class="mod-icon mi-b">💰</div>
+            <div><div class="mod-title">帳務對帳與結算</div><div class="mod-sub">Financial Reconciliation</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd a"></span>月結對帳：「對帳中 → 對帳完成」狀態流轉</li>
+              <li><span class="fd a"></span>撥款追蹤：「待確認 → 已付款」透明化跟進進度</li>
+              <li><span class="fd a"></span>費用明細：進貨價、手續費、退款逐筆呈現</li>
+              <li><span class="fd a"></span>歷史報表：查閱往期結算文件，支援下載</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-hd v">
+            <div class="mod-icon mi-v">🎧</div>
+            <div><div class="mod-title">客服案件管理</div><div class="mod-sub">Customer Service & Returns</div></div>
+          </div>
+          <div class="mod-bd">
+            <ul class="fl">
+              <li><span class="fd v"></span>案件追蹤：依緊急程度（一般／緊急）與狀態分類管理</li>
+              <li><span class="fd v"></span>退貨處理：依商品退款規則系統化審核退貨申請</li>
+              <li><span class="fd v"></span>消費者爭議：集中管理退貨、爭議調解、補發憑證</li>
+              <li><span class="fd v"></span>平台溝通：商家與平台客服之間的正式對策管道</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 PRICING LOGIC -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--amber)">04</div>
+      <span class="card-head-title">商品定價邏輯設計</span>
+      <span class="card-head-sub">Pricing & Margin Logic</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:14.5px;color:var(--ink-2);margin-bottom:20px;line-height:1.8">商品定價機制是商家後台最複雜的業務邏輯之一。我負責梳理平台與商家之間的三層定價架構，確保各方收益計算透明、準確，降低財務爭議。</p>
+      <div style="overflow-x:auto">
+        <table class="ptable">
+          <thead><tr><th>欄位</th><th>說明</th><th>定義</th><th>計算方式</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Market Price 原始價格</td><td>商品市場定價</td><td>商家自行填寫的市場原價</td><td>—</td></tr>
+            <tr><td class="hl">Supply Price 進貨價</td><td>平台撥款給商家的金額</td><td>平台實際付給商家的單價</td><td>雙方合約議定</td></tr>
+            <tr><td class="hl">Sales Price 銷售價</td><td>消費者實際購買價格</td><td>平台設定的對外售價</td><td>由平台設定</td></tr>
+            <tr><td class="hl">Gross Margin %</td><td>毛利率</td><td>平台毛利比率</td><td><span class="fm">(Sales - Supply) / Supply × 100%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="g2" style="margin-top:20px">
+        <div class="box bt">
+          <div class="box-lbl t">特殊憑證類型</div>
+          <ul class="bl-list">
+            <li><span class="mk t">▸</span>QR Code 電子憑證（康太產碼）</li>
+            <li><span class="mk t">▸</span>咖啡寄杯券：預存杯數，逐次核銷</li>
+            <li><span class="mk t">▸</span>餘額券：預付金額，分次抵用消費</li>
+            <li><span class="mk t">▸</span>贈禮模式：支援轉贈給好友功能</li>
+          </ul>
+        </div>
+        <div class="box bam">
+          <div class="box-lbl am">邊界案例與注意事項</div>
+          <ul class="bl-list">
+            <li><span class="mk am">!</span>API 對接商家停用手動核銷，以 POS 數據為準</li>
+            <li><span class="mk am">!</span>退款規則依商品設定，系統自動判斷可退條件</li>
+            <li><span class="mk am">!</span>核銷完成即觸發帳務計算，不可任意取消</li>
+            <li><span class="mk am">!</span>子帳號須被授權才可執行核銷操作</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 VERIFICATION FLOW -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--coral)">05</div>
+      <span class="card-head-title">現場核銷操作流程</span>
+      <span class="card-head-sub">On-site Voucher Verification Flow</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:14.5px;color:var(--ink-2);margin-bottom:24px;line-height:1.8">核銷流程是 O2O 閉環中最關鍵的環節，直接影響商家資金結算與消費者體驗。</p>
+      <div class="flow">
+        <div class="fstep"><div class="fcircle fc-a">1</div><div class="flbl">消費者出示</div><div class="fsub">APP 或 Email 的電子憑證 / QR Code</div></div>
+        <div class="farrow">›</div>
+        <div class="fstep"><div class="fcircle fc-t">2</div><div class="flbl">員工核銷</div><div class="fsub">APP 掃碼或 Web 後台輸入憑證碼</div></div>
+        <div class="farrow">›</div>
+        <div class="fstep"><div class="fcircle fc-am">3</div><div class="flbl">系統驗證</div><div class="fsub">選擇分店，核對憑證有效性與狀態</div></div>
+        <div class="farrow">›</div>
+        <div class="fstep"><div class="fcircle fc-t">4</div><div class="flbl">核銷完成</div><div class="fsub">憑證標記已使用，觸發帳務計算</div></div>
+        <div class="farrow">›</div>
+        <div class="fstep"><div class="fcircle fc-co">5</div><div class="flbl">月結撥款</div><div class="fsub">次月進行對帳與撥款</div></div>
+      </div>
+      <div class="g2" style="margin-top:24px">
+        <div class="box">
+          <div class="box-lbl a">Web 後台核銷步驟</div>
+          <ul class="bl-list">
+            <li><span class="mk a">→</span>登入商家後台 → 進入核銷頁面</li>
+            <li><span class="mk a">→</span>選擇對應分店（多店商家適用）</li>
+            <li><span class="mk a">→</span>輸入消費者憑證碼或條碼</li>
+            <li><span class="mk a">→</span>確認核銷，系統即時更新狀態</li>
+          </ul>
+        </div>
+        <div class="box bt">
+          <div class="box-lbl t">商家 APP 掃碼核銷</div>
+          <ul class="bl-list">
+            <li><span class="mk t">→</span>開啟商家 APP → 進入掃碼功能</li>
+            <li><span class="mk t">→</span>掃描消費者 QR Code</li>
+            <li><span class="mk t">→</span>系統即時回傳驗證結果</li>
+            <li><span class="mk t">→</span>適合現場高頻、快速使用場景</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 PERMISSIONS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--violet)">06</div>
+      <span class="card-head-title">帳號權限矩陣</span>
+      <span class="card-head-sub">Permission Matrix</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:14.5px;color:var(--ink-2);margin-bottom:20px;line-height:1.8">我設計了三層帳號權限架構，滿足從單店到連鎖品牌的多樣管理需求。主帳號可彈性分配子帳號的分店存取範圍與功能模組權限。</p>
+      <div style="overflow-x:auto">
+        <table class="permtable">
+          <thead><tr><th>功能模組</th><th>主帳號 / 老闆</th><th>店長</th><th>員工（核銷）</th></tr></thead>
+          <tbody>
+            <tr><td>帳號管理（開子帳號）</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg am">部分</span></td><td><span class="bdg r">✗ 無</span></td></tr>
+            <tr><td>商品上架 / 編輯</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg b">依授權分店</span></td><td><span class="bdg r">✗ 無</span></td></tr>
+            <tr><td>訂單查詢</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg b">依授權分店</span></td><td><span class="bdg b">依授權分店</span></td></tr>
+            <tr><td>電子憑證核銷</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg g">✓ 限指定店</span></td></tr>
+            <tr><td>帳務結算 / 對帳</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg r">✗ 無</span></td><td><span class="bdg r">✗ 無</span></td></tr>
+            <tr><td>客服案件管理</td><td><span class="bdg g">✓ 全部</span></td><td><span class="bdg b">依授權分店</span></td><td><span class="bdg r">✗ 無</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 IMPACT -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:linear-gradient(135deg,var(--teal),var(--accent))">07</div>
+      <span class="card-head-title">成果與商業價值</span>
+      <span class="card-head-sub">Impact & Business Value</span>
+    </div>
+    <div class="card-body">
+      <div class="imp-grid" style="margin-bottom:24px">
+        <div class="imp-card b"><div class="imp-stat a">50<span class="imp-unit">%+</span></div><div class="imp-lbl">人工對帳成本降低</div><div class="imp-sub">Auto Settlement</div></div>
+        <div class="imp-card t"><div class="imp-stat t">10K<span class="imp-unit">+</span></div><div class="imp-lbl">合作商家使用規模</div><div class="imp-sub">Nationwide Merchants</div></div>
+        <div class="imp-card am"><div class="imp-stat am">0<span class="imp-unit">差</span></div><div class="imp-lbl">結算數據誤差目標</div><div class="imp-sub">Zero-error Reconciliation</div></div>
+      </div>
+      <div class="g2">
+        <div class="box ba">
+          <div class="box-lbl a">營運效益</div>
+          <ul class="bl-list">
+            <li><span class="mk a">📈</span>商家自主管理，降低平台業務人員人工協助成本</li>
+            <li><span class="mk a">📈</span>核銷即時入帳，縮短資金流通時效，提升商家信任</li>
+            <li><span class="mk a">📈</span>商家可即時調整定價與促銷，靈活反應市場需求</li>
+            <li><span class="mk a">📈</span>月結對帳透明化，減少平台與商家間的帳務爭議</li>
+          </ul>
+        </div>
+        <div class="box bt">
+          <div class="box-lbl t">產品資產</div>
+          <ul class="bl-list">
+            <li><span class="mk t">✓</span>可擴充的帳號權限架構，適應連鎖品牌多種管理場景</li>
+            <li><span class="mk t">✓</span>憑證核銷閉環設計，成為平台 O2O 信任機制的核心</li>
+            <li><span class="mk t">✓</span>標準化定價邏輯文件，降低新商家上線的溝通成本</li>
+            <li><span class="mk t">✓</span>累積萬家商家的核銷與消費數據，奠定數據分析基礎</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 DOCUMENTS -->
+  <div class="card">
+    <div class="card-head">
+      <div class="card-num" style="background:var(--ink-3)">08</div>
+      <span class="card-head-title">系統畫面展示</span>
+      <span class="card-head-sub">System Snapshots</span>
+    </div>
+    <div class="card-body">
+      <div class="doc-grid">
+        <div>
+          <div class="doc-frame"><img src="images/5/截圖 2021-07-13 下午11.39.50.png" alt="商家後台訂單總覽"></div>
+          <div class="doc-cap">商家後台：訂單與銷售總覽</div>
+        </div>
+        <div>
+          <div class="doc-frame"><img src="images/5/截圖 2021-07-13 下午11.41.20.png" alt="商品管理"></div>
+          <div class="doc-cap">商品管理：方案與母子項目設定</div>
+        </div>
+        <div>
+          <div class="doc-frame"><img src="images/5/截圖 2023-03-14 下午5.26.30.png" alt="核銷紀錄"></div>
+          <div class="doc-cap">核銷紀錄：即時憑證驗證與報表</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-nav">
+    <a href="project-04.html" class="proj-nav-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      <span>Previous Project</span>
+    </a>
+    <a href="project-06.html" class="proj-nav-link">
+      <span>Next Project</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-copy">&copy; 2024 Jane Chiang Portfolio</div>
+  <a href="index.html#projects" style="color:var(--accent);font-family:var(--mono);font-size:12px;text-decoration:none;">&larr; 返回作品集 Back to Portfolio</a>
+</footer>
 
 </body>
-
 </html>

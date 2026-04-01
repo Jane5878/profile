@@ -10,7 +10,7 @@
     rel="stylesheet">
   <style>
     :root {
-      --sidebar-bg: #2196f3;
+      --sidebar-bg: #0f2244;
       --sidebar-text: rgba(255, 255, 255, 0.45);
       --sidebar-text-hover: rgba(255, 255, 255, 0.75);
       --sidebar-text-active: #ffffff;
@@ -19,9 +19,9 @@
       --ink: #272829;
       --ink-2: #45505b;
       --ink-3: #728394;
-      --accent: #149ddd;
-      --accent-2: #1080ca;
-      --accent-light: #dff3fc;
+      --accent: #0f7adb;
+      --accent-2: #0a5fad;
+      --accent-light: #dbeeff;
       --rule: #eef0f2;
       --sans: 'Outfit', sans-serif;
       --mono: 'JetBrains Mono', monospace;
@@ -72,8 +72,8 @@
       transition: all ease-in-out 0.5s;
       z-index: 9997;
       padding: 40px 20px;
-      background: var(--sidebar-bg);
-      border-right: 1px solid var(--rule);
+      background: linear-gradient(180deg, #0f2244 0%, #0d3b6b 40%, #0a5fad 100%);
+      border-right: none;
       overflow-y: auto;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
     }
@@ -222,9 +222,10 @@
       display: block;
       width: 50px;
       height: 3px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
       bottom: 0;
       left: 0;
+      border-radius: 2px;
     }
 
     /* About Section */
@@ -359,6 +360,8 @@
       background: var(--white);
     }
 
+    .projects-grid { gap: 20px; }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -378,13 +381,13 @@
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(15, 122, 219, 0.15);
     }
 
     .project-thumb {
       height: 220px;
-      background: #f8f9fa;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid var(--rule);
@@ -403,15 +406,17 @@
 
     .project-badge {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 11px;
+      top: 12px;
+      right: 12px;
+      font-size: 10px;
       font-family: var(--mono);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(15, 122, 219, 0.85);
+      backdrop-filter: blur(8px);
       padding: 4px 10px;
       border-radius: 100px;
-      color: var(--ink);
+      color: #fff;
       font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     .project-body {
