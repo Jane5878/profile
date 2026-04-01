@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P06 派單系統開發 — Jane Chiang Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+                        :root {
+            --bg: #f5f8fd;
+            --bg-2: #e9ecef;
+            --bg-3: #dde2e6;
+            --white: #fff;
+            --ink: #272829;
+            --ink-2: #45505b;
+            --ink-3: #728394;
+            --accent: #149ddd;
+            --accent-2: #1080ca;
+            --accent-light: #dff3fc;
+            --accent-bg: #eaf6fd;
+            --rule: #eef0f2;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 4px;
+            --r-lg: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent);
+        }
+
+        .nav-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .nav-badge {
+            font-family: var(--mono);
+            font-size: 12px;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        /* HERO BANNER */
+        .proj-hero {
+            margin-top: 60px;
+            min-height: auto;
+            padding: 80px 52px 60px;
+            background: var(--white);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .proj-hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .proj-hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .proj-hero-title {
+            font-size: clamp(36px, 5vw, 54px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: #173b6c;
+            margin-bottom: 12px;
+        }
+
+        .proj-hero-title em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .proj-hero-sub {
+            font-size: 16px;
+            color: var(--ink-2);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-lbl {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .meta-val {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .chips-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .chip {
+            font-family: var(--mono);
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* MAIN LAYOUT */
+        .page-body {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px 52px;
+        }
+
+        /* SECTION CARDS */
+        .card {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .card-head {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-head-num {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .card-head-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .card-head-sub {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            margin-left: auto;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* OVERVIEW & COLUMNS */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .box {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: 25px;
+        }
+
+        .box.full {
+            grid-column: span 2;
+        }
+
+        .box-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .box p {
+            font-size: 15px;
+            color: var(--ink-2);
+            line-height: 1.75;
+        }
+
+        .box-list {
+            list-style: none;
+        }
+
+        .box-list li {
+            display: flex;
+            gap: 12px;
+            font-size: 14.5px;
+            color: var(--ink-2);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .box-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .bl {
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ROLE TABLE */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 0;
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+
+        .rr>div {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 14.5px;
+        }
+
+        .rr:last-child>div {
+            border-bottom: none;
+        }
+
+        .rk {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .rv {
+            background: var(--white);
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        /* DOCUMENT GALLERY */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .doc-frame {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .doc-frame:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .doc-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .doc-cap {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* PAGINATION */
+        .proj-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+            margin-top: 10px;
+        }
+
+        .proj-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .proj-nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--rule);
+            padding: 30px 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-copy {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px) {
+            nav {
+                padding: 0 24px;
+            }
+
+            .proj-hero {
+                padding: 60px 24px 40px;
+            }
+
+            .page-body {
+                padding: 40px 24px;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-back" href="index.html#projects">
+            <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>
+            返回作品集
+        </a>
+        <span class="nav-brand">Jane Chiang</span>
+        <span class="nav-badge">P06 · ERP · 2B</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="proj-hero">
+        <div class="proj-hero-inner">
+            <div class="proj-hero-eyebrow">P06 · Enterprise · Operation System</div>
+            <h1 class="proj-hero-title">派單系統開發<br><em>Workflow & Job Dispatch System</em></h1>
+            <p class="proj-hero-sub">將繁複的紙本工單流程數位化，打造從業務開發到主管審核、工班執行的一條龍派發管理機制。</p>
+            <div class="meta-row">
+                <div class="meta-item">
+                    <div class="meta-lbl">Platform</div>
+                    <div class="meta-val">Web Dashboard (Internal)</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-lbl">My Role</div>
+                    <div class="meta-val">Project Manager</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-lbl">Target</div>
+                    <div class="meta-val">Internal Staff</div>
+                </div>
+            </div>
+            <div class="chips-row">
+                <span class="chip">Workflow Automation</span>
+                <span class="chip">Role-Based Access</span>
+                <span class="chip">Internal Tools</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+
+        <!-- 01 OVERVIEW -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">01</span>
+                <span class="card-head-title">專案概述</span>
+                <span class="card-head-sub">Project Overview</span>
+            </div>
+            <div class="card-body">
+                <div class="two-col">
+                    <div class="box full">
+                        <div class="box-label">背景 Background</div>
+                        <p>過往內部派工依賴紙本紀錄與通訊軟體，資訊分散且進度難以追蹤。本專案將工單流程模組化，讓業務端能線上新增工單，主管端即時分派任務，並讓執行端回傳現場照片與報工紀錄，達成無紙化管理與數據透明化。</p>
+                    </div>
+                    <div class="box">
+                        <div class="box-label">核心目標 Goals</div>
+                        <ul class="box-list">
+                            <li><span class="bl">→</span>取代紙本作業，達成 100% 資訊數位化</li>
+                            <li><span class="bl">→</span>即時控管各案件進度，提升 50% 跨單位溝通效率</li>
+                            <li><span class="bl">→</span>自動生成月底報工統計與績效報表</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="box-label">專案現況 Scope</div>
+                        <ul class="box-list">
+                            <li><span class="bl">·</span>性質：企業內部流程自動化 (RPA/ERP)</li>
+                            <li><span class="bl">·</span>核心功能：多權限管理、案件狀態追蹤</li>
+                            <li><span class="bl">·</span>狀態：全面導入使用中</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 MY ROLE -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">02</span>
+                <span class="card-head-title">我的角色與職責</span>
+                <span class="card-head-sub">My Role & Responsibilities</span>
+            </div>
+            <div class="card-body">
+                <div class="role-grid">
+                    <div class="rr">
+                        <div class="rk">流程梳理與定義</div>
+                        <div class="rv">深入訪談各部門使用者，將原本模糊的線下手續轉化為數位 User Flow。</div>
+                    </div>
+                    <div class="rr">
+                        <div class="rk">功能規格撰寫</div>
+                        <div class="rv">撰寫完整的 PRD 與功能規格書，規劃業務、主管、執行人員三方的介面與權限邏輯。</div>
+                    </div>
+                    <div class="rr">
+                        <div class="rk">QA 與驗收測試</div>
+                        <div class="rv">規劃 UAT 測試情境，並在部署前進行壓力測試，確保在高負載案件派發時系統穩定。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04 RESULTS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">04</span>
+                <span class="card-head-title">成果數據</span>
+                <span class="card-head-sub">Results & Impact</span>
+            </div>
+            <div class="card-body">
+                <div class="two-col" style="margin-bottom:24px;">
+                    <div class="box">
+                        <div class="box-label">效能提升 Impact</div>
+                        <ul class="box-list">
+                            <li><span class="bl">📈</span>案件平均派發至執行的時程縮短 40%</li>
+                            <li><span class="bl">📈</span>報表產出時程從 3 天縮短為即時產出</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="box-label">質化成果</div>
+                        <ul class="box-list">
+                            <li><span class="bl">✓</span>數據留存：建立完整的歷史派工案件庫</li>
+                            <li><span class="bl">✓</span>成本控制：精確掌握每筆派工案的人力支出</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05 DOCUMENTS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">05</span>
+                <span class="card-head-title">文件展示</span>
+                <span class="card-head-sub">System Snapshots</span>
+            </div>
+            <div class="card-body">
+                <div class="doc-grid">
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/6/流程架構圖.png" alt="Workflow Arch">
+                        </div>
+                        <div class="doc-cap">核心業務流程架構圖</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/6/主管身份.png" alt="Manager Interface">
+                        </div>
+                        <div class="doc-cap">主管端派工管理介面</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/6/業務身份.png" alt="Sales Interface">
+                        </div>
+                        <div class="doc-cap">業務端新增報工清單介面</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="proj-nav">
+            <a href="project-05.html" class="proj-nav-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <span>Previous Project</span>
+            </a>
+            <a href="project-07.html" class="proj-nav-link">
+                <span>Next Project</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+        <footer>
+        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
+        <a class="footer-back" href="index.html#projects" style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to Portfolio</a>
+    </footer>
+
+</body>
+
+</html>

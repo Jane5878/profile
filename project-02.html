@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P02 優惠券模組 — Jane Chiang Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f8fd;
+            --bg-2: #e9ecef;
+            --bg-3: #dde2e6;
+            --white: #fff;
+            --ink: #272829;
+            --ink-2: #45505b;
+            --ink-3: #728394;
+            --accent: #149ddd;
+            --accent-2: #1080ca;
+            --accent-light: #dff3fc;
+            --accent-bg: #eaf6fd;
+            --rule: #eef0f2;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 4px;
+            --r-lg: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent);
+        }
+
+        .nav-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .nav-badge {
+            font-family: var(--mono);
+            font-size: 12px;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        /* HERO BANNER */
+        .proj-hero {
+            margin-top: 60px;
+            min-height: auto;
+            padding: 80px 52px 60px;
+            background: var(--white);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .proj-hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .proj-hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .proj-hero-title {
+            font-size: clamp(36px, 5vw, 54px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: #173b6c;
+            margin-bottom: 12px;
+        }
+
+        .proj-hero-title em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .proj-hero-sub {
+            font-size: 16px;
+            color: var(--ink-2);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-lbl {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .meta-val {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .chips-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .chip {
+            font-family: var(--mono);
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* MAIN LAYOUT */
+        .page-body {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px 52px;
+        }
+
+        /* SECTION CARDS */
+        .card {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .card-head {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-head-num {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .card-head-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .card-head-sub {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            margin-left: auto;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* OVERVIEW & COLUMNS */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .ov-box {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: 25px;
+        }
+
+        .ov-box.full {
+            grid-column: span 2;
+        }
+
+        .ov-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .ov-box p {
+            font-size: 15px;
+            color: var(--ink-2);
+            line-height: 1.75;
+        }
+
+        .ov-list {
+            list-style: none;
+        }
+
+        .ov-list li {
+            display: flex;
+            gap: 12px;
+            font-size: 14.5px;
+            color: var(--ink-2);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .ov-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .bl {
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ROLE TABLE */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 0;
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+
+        .role-row {
+            display: contents;
+        }
+
+        .role-row>div {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 14.5px;
+        }
+
+        .role-row:last-child>div {
+            border-bottom: none;
+        }
+
+        .role-key {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .role-val {
+            background: var(--white);
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        /* DOCUMENT GALLERY */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .doc-frame {
+            background: var(--bg);
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .doc-frame:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .doc-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .doc-cap {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .doc-note {
+            font-size: 13px;
+            color: var(--ink-3);
+            font-family: var(--mono);
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: var(--r);
+            border-left: 3px solid var(--accent);
+        }
+
+        /* CHALLENGES */
+        .ch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .ch-box {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: 28px;
+        }
+
+        .ch-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .ch-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #173b6c;
+            margin-bottom: 10px;
+        }
+
+        .ch-text {
+            font-size: 14px;
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        .ch-learn {
+            margin-top: 15px;
+            padding: 10px 14px;
+            background: var(--accent-light);
+            border-radius: var(--r);
+            font-size: 13px;
+            color: #0e5888;
+            font-family: var(--mono);
+            font-weight: 500;
+        }
+
+        /* PLACEHOLDER BLOCK */
+        .placeholder-block {
+            background: #f8f9fa;
+            border: 2px dashed var(--rule);
+            border-radius: var(--r-lg);
+            padding: 40px;
+            text-align: center;
+            color: var(--ink-3);
+        }
+
+        .placeholder-block p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--ink-2);
+        }
+
+        .placeholder-block small {
+            font-size: 12px;
+            color: var(--ink-3);
+        }
+
+        /* PAGINATION */
+        .proj-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+            margin-top: 10px;
+        }
+
+        .proj-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .proj-nav-link:hover {
+            color: var(--accent);
+        }
+
+        .proj-nav-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--rule);
+            padding: 30px 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-copy {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+        }
+
+        .footer-back {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-back:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px) {
+            nav {
+                padding: 0 24px;
+            }
+
+            .proj-hero {
+                padding: 60px 24px 40px;
+            }
+
+            .page-body {
+                padding: 40px 24px;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ov-box.full {
+                grid-column: span 1;
+            }
+
+            .ch-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-key {
+                border-bottom: none !important;
+            }
+
+            footer {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-back" href="index.html#projects">
+            <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>
+            返回作品集
+        </a>
+        <span class="nav-brand">Jane Chiang</span>
+        <span class="nav-badge">P02 · MarTech · 2B</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="proj-hero">
+        <div class="proj-hero-inner">
+            <div class="proj-hero-eyebrow">P02 · MarTech · B2B SaaS</div>
+            <h1 class="proj-hero-title">票券行銷模組<br><em>Marketing Coupon Module</em></h1>
+            <p class="proj-hero-sub">開發跨平台票券行銷後台，串接 LINE 生態圈，讓企業能彈性配置活動並透過數據 Dashboard 即時掌握成效。</p>
+            <div class="meta-row">
+                <div class="meta-item">
+                    <div class="meta-lbl">Platform</div>
+                    <div class="meta-val">Web (CMS & Frontend) + LINE OA</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-lbl">My Role</div>
+                    <div class="meta-val">Project Manager</div>
+                </div>
+            </div>
+            <div class="chips-row">
+                <span class="chip">B2B SaaS</span>
+                <span class="chip">OMO</span>
+                <span class="chip">LINE行銷票券模組</span>
+                <span class="chip">Data Dashboard</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+
+        <!-- 01 OVERVIEW -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">01</span>
+                <span class="card-head-title">專案概述</span>
+                <span class="card-head-sub">Project Overview</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid">
+                    <div class="ov-box full">
+                        <div class="ov-label">背景與需求 Background</div>
+                        <p>發放電子優惠券是公司最受歡迎的行銷工具。針對企業客戶在檔期活動中面臨的「發放成本高」、「數據追蹤斷裂」與「核銷流程繁瑣」等痛點，提出開發了此整合 LINE 生態圈的票券模組。協助 B
+                            端客戶能自主、彈性地設計活動，並透過數位足跡落實精準行銷；也使公司開發資源能更有效的利用</p>
+                    </div>
+                    <div class="ov-box full">
+                        <div class="ov-label">核心目標 Goals</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">→</span>刺激衝動消費：透過多元渠道（LINE/FB/EDM）激發領券意願。</li>
+                            <li><span class="bl">→</span>降低行銷成本：取代紙本券，實現高互動且低成本的數位擴散。</li>
+                            <li><span class="bl">→</span>線上線下整合：同步整合 OMO 數據，掌握從領券到店核銷的完整路徑。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 02 MY ROLE -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">02</span>
+                <span class="card-head-title">我的角色與職責</span>
+                <span class="card-head-sub">My Role & Responsibilities</span>
+            </div>
+            <div class="card-body">
+                <div class="role-grid">
+                    <div class="role-row">
+                        <div class="role-key">規格定義與時程控管</div>
+                        <div class="role-val">撰寫 Spec、Prototype，製作 Wireframe 與 User Flow，控管設計與開發團隊時程。</div>
+                    </div>
+                    <div class="role-row">
+                        <div class="role-key">利害關係人溝通</div>
+                        <div class="role-val">對接內部與企業客戶，釐親規格可行性並提供替代解決方案。</div>
+                    </div>
+                    <div class="role-row">
+                        <div class="role-key">品質監控</div>
+                        <div class="role-val">規劃 Test Case、執行測試並追蹤 Debug項目等，確保內容與流量運營穩定。</div>
+                    </div>
+                    <div class="role-row">
+                        <div class="role-key">市場推廣支援</div>
+                        <div class="role-val">統整業務銷售情境與需求，製作行銷模組Sales Kit，蒐集並分析市場痛點與需求，強調模組後台直覺簡易、彈性設定、數據有效蒐整...等特性。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 03 PROCESS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">03</span>
+                <span class="card-head-title">功能模組</span>
+                <span class="card-head-sub">Modules</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid">
+                    <div class="ov-box full">
+                        <div class="ov-label">功能模組</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">→</span>多渠道發送：透過LINE OA、FB、EDM發券給潛在及現有會員。</li>
+                            <li><span class="bl">→</span>動態行為貼標：根據用戶領券與點擊行為，即時更新會員標籤。</li>
+                            <li><span class="bl">→</span>OMO核銷中心：線上領券，線下門市掃碼核銷。</li>
+                            <li><span class="bl">→</span>數據儀表板：視覺化分析領券量、使用率與轉換率。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 04 RESULTS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">04</span>
+                <span class="card-head-title">成果數據</span>
+                <span class="card-head-sub">Results & Impact</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid" style="margin-bottom:24px;">
+                    <div class="ov-box">
+                        <div class="ov-label">量化成果</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">📈</span>模組上線後，公司行銷訂單銷售量顯著增加 30%。</li>
+                            <li><span class="bl">📈</span>解決人工繁複設定痛點，為B端客戶節省 50% 以上時間成本。</li>
+                        </ul>
+                    </div>
+                    <div class="ov-box">
+                        <div class="ov-label">質化成果</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">✓</span>個人電子券匣：提升品牌留存率與用戶直覺體驗</li>
+                            <li><span class="bl">✓</span>即時數據查看：協助行銷人員精準決策與調整</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="placeholder-block">
+                    <p>模組化設計讓B端客戶能自主上線，大幅降低50%以上的人工維運、溝通與開發成本。</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 05 DOCUMENTS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">05</span>
+                <span class="card-head-title">文件展示</span>
+                <span class="card-head-sub">Wireframe / PRD</span>
+            </div>
+            <div class="card-body">
+                <div class="doc-grid">
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/2/優惠券模組規劃畫面.webp" alt="優惠券模組規劃畫面"
+                                style="width:100%;height:100%;object-fit:contain;">
+                        </div>
+                        <div class="doc-cap">功能規格與介面規劃(部分)</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/2/優惠券模組Sales Kit.webp" alt="優惠券模組Sales Kit"
+                                style="width:100%;height:100%;object-fit:contain;">
+                        </div>
+                        <div class="doc-cap">Sales Kit(部分)</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/2/票券模組.webp" alt="票券模組" style="width:100%;height:100%;object-fit:contain;">
+                        </div>
+                        <div class="doc-cap">流程圖</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 CHALLENGES -->
+        <div class="card" style="display: none;">
+            <div class="card-head">
+                <span class="card-head-num">06</span>
+                <span class="card-head-title">挑戰與學習</span>
+                <span class="card-head-sub">Challenges & Key Learnings</span>
+            </div>
+            <div class="card-body">
+                <div class="ch-grid">
+                    <div class="ch-box">
+                        <div class="ch-icon">🔗</div>
+                        <div class="ch-title">跨渠道身份識別</div>
+                        <div class="ch-text">確保用戶從 FB 或 SMS 導流至 LINE 時，數位足跡能精準整合至同一會員 ID。</div>
+                        <div class="ch-learn">→ 強化了對 OpenID 與 CRM 連結邏輯的理解。</div>
+                    </div>
+                    <div class="ch-box">
+                        <div class="ch-icon">⚙️</div>
+                        <div class="ch-title">高併發核銷穩定性</div>
+                        <div class="ch-text">在特定檔期面臨瞬間高流量核銷壓力，需優化 API 響應速度以避免結帳塞車。</div>
+                        <div class="ch-learn">→ 引入非同步排隊機制與緩存策略優化。</div>
+                    </div>
+                    <div class="ch-box">
+                        <div class="ch-icon">💡</div>
+                        <div class="ch-title">業務與技術的平衡</div>
+                        <div class="ch-text">初期專注功能齊全，後續發現客戶更在意「Sales Kit」與「ROI 報表」的直覺度。</div>
+                        <div class="ch-learn">→ 調整產品方向，將數據視覺化作為核心亮點。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="proj-nav">
+            <a class="proj-nav-link" href="project-01.html" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <div><span class="proj-nav-label">上一個專案</span>社群 App</div>
+            </a>
+            <a class="proj-nav-link" href="#" target="_blank" style="text-align:right">
+                <div><span class="proj-nav-label">Next Project</span>下一個專案</div>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
+        <a class="footer-back" href="index.html#projects"
+            style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to
+            Portfolio</a>
+    </footer>
+
+</body>
+
+</html>

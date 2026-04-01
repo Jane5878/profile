@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P01 社群 App — Jane Chiang Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+                    :root {
+            --bg: #f5f8fd;
+            --bg-2: #e9ecef;
+            --bg-3: #dde2e6;
+            --white: #fff;
+            --ink: #272829;
+            --ink-2: #45505b;
+            --ink-3: #728394;
+            --accent: #149ddd;
+            --accent-2: #1080ca;
+            --accent-light: #dff3fc;
+            --accent-bg: #eaf6fd;
+            --rule: #eef0f2;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 4px;
+            --r-lg: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-back:hover {
+      color: var(--accent);
+    }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    /* HERO BANNER */
+    .proj-hero {
+      margin-top: 60px;
+      min-height: auto;
+      padding: 80px 52px 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .proj-hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .proj-hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .proj-hero-title {
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #173b6c;
+      margin-bottom: 12px;
+    }
+
+    .proj-hero-title em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .proj-hero-sub {
+      font-size: 16px;
+      color: var(--ink-2);
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-lbl {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .meta-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .chip.ac {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    /* MAIN LAYOUT */
+    .page-body {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 52px;
+    }
+
+    /* SECTION CARDS */
+    .card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .card-head {
+      padding: 20px 30px;
+      background: #f8f9fa;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card-head-num {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #173b6c;
+    }
+
+    .card-head-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-left: auto;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    /* OVERVIEW GRID */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .ov-box {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      padding: 25px;
+    }
+
+    .ov-box.full {
+      grid-column: span 2;
+    }
+
+    .ov-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ov-box p {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.75;
+    }
+
+    .ov-list {
+      list-style: none;
+    }
+
+    .ov-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ov-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ov-bullet {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ROLE TABLE */
+    .role-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .role-row {
+      display: contents;
+    }
+
+    .role-row>div {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14.5px;
+    }
+
+    .role-row:last-child>div {
+      border-bottom: none;
+    }
+
+    .role-key {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #173b6c;
+    }
+
+    .role-val {
+      background: var(--white);
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    /* DOCUMENT GALLERY */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .doc-frame {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .doc-frame:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .doc-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--ink-3);
+    }
+
+    .doc-placeholder-icon {
+      font-size: 36px;
+      opacity: 0.5;
+    }
+
+    .doc-placeholder-lbl {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .doc-caption {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .doc-note {
+      font-size: 13px;
+      color: var(--ink-3);
+      font-family: var(--mono);
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-radius: var(--r);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* CHALLENGES */
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .challenge-box {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      padding: 28px;
+    }
+
+    .ch-icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .ch-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #173b6c;
+      margin-bottom: 10px;
+    }
+
+    .ch-text {
+      font-size: 14px;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    .ch-learn {
+      margin-top: 15px;
+      padding: 10px 14px;
+      background: var(--accent-light);
+      border-radius: var(--r);
+      font-size: 13px;
+      color: #0e5888;
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    /* PAGINATION */
+    .proj-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+      margin-top: 10px;
+    }
+
+    .proj-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .proj-nav-link:hover {
+      color: var(--accent);
+    }
+
+    .proj-nav-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 400;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      padding: 30px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    .footer-back {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-back:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .proj-hero {
+        padding: 60px 24px 40px;
+      }
+
+      .page-body {
+        padding: 40px 24px;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ov-box.full {
+        grid-column: span 1;
+      }
+
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .role-key {
+        border-bottom: none !important;
+      }
+
+      footer {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-back" href="index.html#projects">
+      <svg viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      返回作品集
+    </a>
+    <span class="nav-brand">Jane Chiang</span>
+    <span class="nav-badge">P01 · Social App</span>
+  </nav>
+
+  <div class="proj-hero">
+    <div class="proj-hero-inner">
+      <div class="proj-hero-eyebrow">P01 · Social Platform · 2C</div>
+      <h1 class="proj-hero-title">社群 App<br><em>Hybrid Mobile Application</em></h1>
+      <p class="proj-hero-sub">主打在地社群互動的 Hybrid App，同時上架 Android 與 iOS，涵蓋快問快答、虛擬幣獎勵、LBS 定位貼文等核心功能。</p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-lbl">Platform</div>
+          <div class="meta-val">Android · iOS</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-lbl">My Role</div>
+          <div class="meta-val">Product Manager</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-lbl">Architecture</div>
+          <div class="meta-val">WebView + Native</div>
+        </div>
+      </div>
+      <div class="chips-row">
+        <span class="chip ac">Feed Ranking</span>
+        <span class="chip">A/B Testing</span>
+        <span class="chip">LBS</span>
+        <span class="chip">M幣虛擬貨幣</span>
+        <span class="chip">Anonymous Matching</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">01</span>
+        <span class="card-head-title">專案概述</span>
+        <span class="card-head-sub">Project Overview</span>
+      </div>
+      <div class="card-body">
+        <div class="overview-grid">
+          <div class="ov-box full">
+            <div class="ov-label">背景 Background</div>
+            <p>一款主打在地社群互動的行動應用程式，核心功能圍繞「快問快答（Q&A Story）」與社群貼文，並搭配虛擬幣（M幣）獎勵機制驅動用戶參與。技術架構採 WebView 與原生頁面混合，兼顧跨平台開發效率。</p>
+          </div>
+          <div class="ov-box">
+            <div class="ov-label">核心目標 Goals</div>
+            <ul class="ov-list">
+              <li><span class="ov-bullet">→</span>建立在地社群互動平台，提升 DAU</li>
+              <li><span class="ov-bullet">→</span>透過 M幣獎勵生態驅動 UGC 內容量成長</li>
+              <li><span class="ov-bullet">→</span>設計多帳號角色架構支援 B2C 品牌入駐</li>
+            </ul>
+          </div>
+          <div class="ov-box">
+            <div class="ov-label">技術背景 Tech Context</div>
+            <p>Native 負責效能敏感模組（相機、定位等），WebView 負責內容展示。在開發成本與 UX 流暢度間取捨，體驗一致性為主要挑戰。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">02</span>
+        <span class="card-head-title">我的角色與職責</span>
+        <span class="card-head-sub">My Role & Responsibilities</span>
+      </div>
+      <div class="card-body">
+        <div class="role-grid">
+          <div class="role-row">
+            <div class="role-key">功能規格定義</div>
+            <div class="role-val">撰寫各功能模組 PRD，定義 User Story、測試驗收腳本，協調前後端工程對齊規格。</div>
+          </div>
+          <div class="role-row">
+            <div class="role-key">Roadmap 規劃</div>
+            <div class="role-val">負責 Backlog 優先排序，制定版本 Roadmap，管理 Sprint 計劃與需求變更對排程的衝擊。</div>
+          </div>
+          <div class="role-row">
+            <div class="role-key">跨組溝通協調</div>
+            <div class="role-val">同步對接前後端、UI/UX 設計、運營與行銷、業務等團隊，擔任各方溝通橋樑。</div>
+          </div>
+          <div class="role-row">
+            <div class="role-key">用戶研究與分析</div>
+            <div class="role-val">彙整In-APP回饋與App Store Review，與 UX共同研究回饋與痛點，並依照頻率與嚴重度進行優先排序、提出改善方案，驅動功能迭代。</div>
+          </div>
+          <div class="role-row">
+            <div class="role-key">A/B Testing 執行</div>
+            <div class="role-val">建立 A/B Testing 實驗，定義實驗對象、實驗組與對照組，並追蹤實驗數據，進行實驗結果分析，提出改善方案，驅動功能迭代。</div>
+          </div>
+          <div class="role-row">
+            <div class="role-key">行銷活動聯動</div>
+            <div class="role-val">結合七夕行銷活動需求，定義匿名配對聊天功能規格，協調產品與行銷團隊的時程對齊與資源分配。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">03</span>
+        <span class="card-head-title">文件展示</span>
+        <span class="card-head-sub">流程圖 · 規格文件 · Wireframe</span>
+      </div>
+      <div class="card-body">
+        <div class="doc-grid">
+          <div>
+            <div class="doc-frame">
+              <div class="doc-placeholder">
+                <div class="doc-placeholder-icon">📊</div>
+                <div class="doc-placeholder-lbl">流程圖上傳區</div>
+              </div>
+            </div>
+            <div class="doc-caption">用戶註冊 Flow</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <div class="doc-placeholder">
+                <div class="doc-placeholder-icon">📄</div>
+                <div class="doc-placeholder-lbl">規格文件擷圖</div>
+              </div>
+            </div>
+            <div class="doc-caption">Q&A Story PRD</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <div class="doc-placeholder">
+                <div class="doc-placeholder-icon">📐</div>
+                <div class="doc-placeholder-lbl">Wireframe 擷圖</div>
+              </div>
+            </div>
+            <div class="doc-caption">首頁 Feed Wireframe</div>
+          </div>
+        </div>
+        <div class="doc-note">💡 將 .doc-placeholder 替換為 &lt;img src="..."&gt; 以展示實際圖片。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">04</span>
+        <span class="card-head-title">挑戰與學習</span>
+        <span class="card-head-sub">Challenges & Key Learnings</span>
+      </div>
+      <div class="card-body">
+        <div class="challenge-grid">
+          <div class="challenge-box">
+            <div class="ch-icon">⚙️</div>
+            <div class="ch-title">Hybrid App 架構取捨</div>
+            <div class="ch-text">WebView 切換影響轉場體驗，需持續在開發成本與 UX 之間進行協商。</div>
+            <div class="ch-learn">→ 學習技術選型對體驗決策的影響</div>
+          </div>
+          <div class="challenge-box">
+            <div class="ch-icon">🔬</div>
+            <div class="ch-title">功能分階落地</div>
+            <div class="ch-text">推播演算法未能及時上線，後續使用評分作為 Fallback 方案。</div>
+            <div class="ch-learn">→ 強化 MVP 優先思維</div>
+          </div>
+          <div class="challenge-box">
+            <div class="ch-icon">🤝</div>
+            <div class="ch-title">利害關係人對齊</div>
+            <div class="ch-text">同步對接四個團隊，需要在緊縮的時程下保持一致的規格認知。</div>
+            <div class="ch-learn">→ 建立高效溝通節奏</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-nav">
+      <a class="proj-nav-link" href="index.html#projects">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <div><span class="proj-nav-label">Back to Portfolio</span>返回作品集</div>
+      </a>
+      <a class="proj-nav-link" href="project-template.html" target="_blank" style="text-align:right">
+        <div><span class="proj-nav-label">下一個專案</span>Template 預覽</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+      <footer>
+        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
+        <a class="footer-back" href="index.html#projects" style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to Portfolio</a>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P04 聚合交通碼 APP — Jane Chiang Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f8fd;
+            --bg-2: #e9ecef;
+            --bg-3: #dde2e6;
+            --white: #fff;
+            --ink: #272829;
+            --ink-2: #45505b;
+            --ink-3: #728394;
+            --accent: #149ddd;
+            --accent-2: #1080ca;
+            --accent-light: #dff3fc;
+            --accent-bg: #eaf6fd;
+            --rule: #eef0f2;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 4px;
+            --r-lg: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 52px;
+            height: 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-back:hover {
+            color: var(--accent);
+        }
+
+        .nav-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .nav-badge {
+            font-family: var(--mono);
+            font-size: 12px;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+
+        /* HERO BANNER */
+        .proj-hero {
+            margin-top: 60px;
+            min-height: auto;
+            padding: 80px 52px 60px;
+            background: var(--white);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .proj-hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .proj-hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .proj-hero-title {
+            font-size: clamp(36px, 5vw, 54px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: #173b6c;
+            margin-bottom: 12px;
+        }
+
+        .proj-hero-title em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .proj-hero-sub {
+            font-size: 16px;
+            color: var(--ink-2);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-lbl {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .meta-val {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .chips-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .chip {
+            font-family: var(--mono);
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* MAIN LAYOUT */
+        .page-body {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 60px 52px;
+        }
+
+        /* SECTION CARDS */
+        .card {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .card-head {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-head-num {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .card-head-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .card-head-sub {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--ink-3);
+            margin-left: auto;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* OVERVIEW & COLUMNS */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .ov-box {
+            background: var(--bg);
+            border-radius: var(--r-lg);
+            padding: 25px;
+        }
+
+        .ov-box.full {
+            grid-column: span 2;
+        }
+
+        .ov-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .ov-box p {
+            font-size: 15px;
+            color: var(--ink-2);
+            line-height: 1.75;
+        }
+
+        .ov-list {
+            list-style: none;
+        }
+
+        .ov-list li {
+            display: flex;
+            gap: 12px;
+            font-size: 14.5px;
+            color: var(--ink-2);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .ov-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .bl {
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* ROLE TABLE */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 0;
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+
+        .role-row {
+            display: contents;
+        }
+
+        .role-row>div {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--rule);
+            font-size: 14.5px;
+        }
+
+        .role-row:last-child>div {
+            border-bottom: none;
+        }
+
+        .role-key {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #173b6c;
+        }
+
+        .role-val {
+            background: var(--white);
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        /* DOCUMENT GALLERY */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .doc-frame {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: var(--r-lg);
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .doc-frame:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .doc-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .doc-cap {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* PLACEHOLDER BLOCK */
+        .placeholder-block {
+            background: #f8f9fa;
+            border: 2px dashed var(--rule);
+            border-radius: var(--r-lg);
+            padding: 40px;
+            text-align: center;
+            color: var(--ink-3);
+        }
+
+        .placeholder-block p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--ink-2);
+        }
+
+        /* PAGINATION */
+        .proj-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 0;
+            margin-top: 10px;
+        }
+
+        .proj-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--ink-2);
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .proj-nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--rule);
+            padding: 30px 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-copy {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--ink-3);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px) {
+            nav {
+                padding: 0 24px;
+            }
+
+            .proj-hero {
+                padding: 60px 24px 40px;
+            }
+
+            .page-body {
+                padding: 40px 24px;
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ov-box.full {
+                grid-column: span 1;
+            }
+
+            .doc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-key {
+                border-bottom: none !important;
+            }
+
+            footer {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a class="nav-back" href="index.html#projects">
+            <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>
+            返回作品集
+        </a>
+        <span class="nav-brand">Jane Chiang</span>
+        <span class="nav-badge">P04 · Mobility · 2C</span>
+    </nav>
+
+    <!-- HERO -->
+    <div class="proj-hero">
+        <div class="proj-hero-inner">
+            <div class="proj-hero-eyebrow">P04 · Smart Mobility · APP</div>
+            <h1 class="proj-hero-title">聚合交通碼 APP<br><em>MaaS Aggregate Mobility App</em></h1>
+            <p class="proj-hero-sub">整合捷運、公車、飛機的聚合交通碼，推廣綠色交通足跡紀錄，一機在手暢遊智慧城市。</p>
+            <div class="meta-row">
+                <div class="meta-item">
+                    <div class="meta-lbl">Platform</div>
+                    <div class="meta-val">iOS / Android (Native)</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-lbl">My Role</div>
+                    <div class="meta-val">Product Manager</div>
+                </div>
+            </div>
+            <div class="chips-row">
+                <span class="chip">第三方支付</span>
+                <span class="chip">交通票券整合平台</span>
+                <span class="chip">APP</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+
+        <!-- 01 OVERVIEW -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">01</span>
+                <span class="card-head-title">專案概述</span>
+                <span class="card-head-sub">Project Overview</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid">
+                    <div class="ov-box full">
+                        <div class="ov-label">背景 Background</div>
+                        <p>為了解決城市交通工具支付分散的痛點，希望用戶透過APP能一站完成所有交通行動服務，訂購交通票券、旅運規劃，且實現透過單一QR
+                            Code搭乘多種運具，藉由行程結合住宿等其他商業模式，結合碳足跡回饋機制，鼓勵用戶選擇低碳交通方式，進而達成綠色城市與永續經營目標。</p>
+                    </div>
+                    <div class="ov-box full">
+                        <div class="ov-label">現狀痛點 Pain Points</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">·</span>無整合交通票券平台</li>
+                            <li><span class="bl">·</span>功能單一無法沉澱用戶價值</li>
+                            <li><span class="bl">·</span>無法形成生態體系</li>
+                        </ul>
+                    </div>
+                    <div class="ov-box full">
+                        <div class="ov-label">核心目標 Goals</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">→</span>整合第三方支付與各類運具碼介面，設計跨運具的車票預訂與支付流程</li>
+                            <li><span class="bl">→</span>多國語系，使外國人不限語言限制使用</li>
+                            <li><span class="bl">→</span>結合住宿、景點、餐飲等其他商業模式，打造日常與旅遊生態系</li>
+                            <li><span class="bl">→</span>建立綠色旅遊回饋制度，提升用戶黏著度</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 02 MY ROLE -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">02</span>
+                <span class="card-head-title">我的角色與職責</span>
+                <span class="card-head-sub">My Role & Responsibilities</span>
+            </div>
+            <div class="card-body">
+                <div class="role-grid">
+                    <div class="role-row">
+                        <div class="role-key">規格定義與UX規劃</div>
+                        <div class="role-val">負責App整體資訊架構、Sitemap、Wireframe繪製與User Flow設計，確保支付流程順暢。</div>
+                    </div>
+                    <div class="role-row">
+                        <div class="role-key">與票券供應商對接</div>
+                        <div class="role-val">共同討論提供票券方案(API或票池)，衡量各方案的優劣，並提供建議。</div>
+                    </div>
+                    <div class="role-row">
+                        <div class="role-key">APP生態系與商業模式策畫</div>
+                        <div class="role-val">規劃公共運輸票券預訂、多元旅運規劃、周邊觀光套票服務、環保集點機制等各類服務，打造日常與旅遊生態系。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 PROCESS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">03</span>
+                <span class="card-head-title">專案過程</span>
+                <span class="card-head-sub">解決方案</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid">
+                    <div class="ov-box full">
+                        <div class="ov-label">解決方案與開發規劃</div>
+                        <p style="margin-bottom: 20px; font-size: 15px; color: var(--ink-2); line-height: 1.7;">
+                            因應需求點及現有架構，依功能優先級拆分開發階段。</p>
+                        <ul class="ov-list">
+                            <li><span class="bl">一、</span>MaaS生態體系：整合票券預訂、路線查詢，並結合周邊觀光商務露出。</li>
+                            <li><span class="bl">二、</span>電子票務支付：實現 APP 支付與手機驗票流程，簡化實體取票。</li>
+                            <li><span
+                                    class="bl">三、</span>綠色旅遊回饋機制：結合碳足跡計算，視移動方式和交通載具的不同計算出碳排放(計算方式由碳權方面專案PM負責)，透過購買大眾運輸套票獲得綠色點數，可用於商城換購。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 04 VISION -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">04</span>
+                <span class="card-head-title">專案願景</span>
+                <span class="card-head-sub">Project Vision</span>
+            </div>
+            <div class="card-body">
+                <div class="overview-grid">
+                    <div class="ov-box full">
+                        <div class="ov-label">願景目標</div>
+                        <ul class="ov-list">
+                            <li><span class="bl">→</span>有效運用運輸資源，減少道路壅塞、能源損耗、降低污染。</li>
+                            <li><span class="bl">→</span>整合各類公共運具，並能夠帶動地方經濟、服務人群及永續經營。</li>
+                            <li><span class="bl">→</span>依使用者個人足跡特性提供各式個人化行程方案規劃，達到以人為本的服務。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 05 DOCUMENTS -->
+        <div class="card">
+            <div class="card-head">
+                <span class="card-head-num">05</span>
+                <span class="card-head-title">文件展示</span>
+                <span class="card-head-sub">Wireframe / User Flow</span>
+            </div>
+            <div class="card-body">
+                <div class="doc-grid">
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/4/乘車碼資訊流.png" alt="Sitemap">
+                        </div>
+                        <div class="doc-cap">乘車碼資訊流圖</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/4/原型設計-頁面流程圖.jpg" alt="User Flow">
+                        </div>
+                        <div class="doc-cap">頁面流程圖</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/4/第1層.首頁.png" alt="UI Design">
+                        </div>
+                        <div class="doc-cap">APP 首頁 UI 介面設計</div>
+                    </div>
+                    <div>
+                        <div class="doc-frame">
+                            <img src="images/4/merged_process.png" alt="Process">
+                        </div>
+                        <div class="doc-cap">主要頁面</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="proj-nav">
+            <a href="project-03.html" class="proj-nav-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                <span>Previous Project</span>
+            </a>
+            <a href="project-05.html" class="proj-nav-link">
+                <span>Next Project</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
+        <a class="footer-back" href="index.html#projects"
+            style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to
+            Portfolio</a>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>江翊蓁 Jane Chiang — PM Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --sidebar-bg: #2196f3;
+      --sidebar-text: rgba(255, 255, 255, 0.45);
+      --sidebar-text-hover: rgba(255, 255, 255, 0.75);
+      --sidebar-text-active: #ffffff;
+      --bg: #f5f8fd;
+      --white: #fff;
+      --ink: #272829;
+      --ink-2: #45505b;
+      --ink-3: #728394;
+      --accent: #149ddd;
+      --accent-2: #1080ca;
+      --accent-light: #dff3fc;
+      --rule: #eef0f2;
+      --sans: 'Outfit', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --r: 4px;
+      --r-lg: 8px;
+      --shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mobile-name {
+      display: none;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #37b3ed;
+    }
+
+    /* Sidebar */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 280px;
+      transition: all ease-in-out 0.5s;
+      z-index: 9997;
+      padding: 40px 20px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--rule);
+      overflow-y: auto;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .profile {
+      padding-top: 30px;
+      text-align: center;
+    }
+
+    .profile .profile-img {
+      margin: 15px auto;
+      display: block;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .profile h1 {
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+      font-weight: 600;
+    }
+
+    .profile h1 a {
+      color: #fff;
+    }
+
+    .profile .role {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-top: 5px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* Nav Menu */
+    .nav-menu {
+      padding: 30px 0 0 0;
+    }
+
+    .nav-menu ul {
+      list-style: none;
+    }
+
+    .nav-menu li {
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-menu a {
+      display: flex;
+      align-items: center;
+      color: var(--sidebar-text);
+      padding: 12px 15px;
+      margin-bottom: 8px;
+      font-size: 15px;
+      border-radius: 5px;
+    }
+
+    .nav-menu a:hover {
+      color: var(--sidebar-text-hover);
+      background: none;
+      box-shadow: none;
+    }
+
+    .nav-menu .active {
+      color: var(--sidebar-text-active);
+      background: none;
+      box-shadow: none;
+    }
+
+    .nav-menu a:hover span,
+    .nav-menu .active span {
+      font-weight: 500;
+    }
+
+    #main {
+      margin-left: 300px;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-nav-toggle {
+      display: none;
+      position: fixed;
+      right: 15px;
+      top: 15px;
+      z-index: 9998;
+      border: 0;
+      font-size: 20px;
+      transition: all 0.4s;
+      outline: none;
+      background-color: var(--accent);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mobile-nav-active #header {
+      left: 0;
+    }
+
+    .mobile-nav-active .mobile-nav-toggle {
+      background: var(--sidebar-bg);
+    }
+
+    /* General Sections */
+    section {
+      padding: 60px 40px;
+      overflow: hidden;
+    }
+
+    .section-title {
+      padding-bottom: 45px;
+      position: relative;
+    }
+
+    .section-title {
+      padding-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      position: relative;
+      color: #173b6c;
+    }
+
+    .section-title h2::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      bottom: 0;
+      left: 0;
+    }
+
+    /* About Section */
+    .about .about-content {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #ddd;
+      border-radius: var(--r-lg);
+      object-fit: cover;
+    }
+
+    .about-info h3 {
+      font-size: 26px;
+      font-weight: 600;
+      color: #173b6c;
+      margin-bottom: 15px;
+    }
+
+    .about-info .desc {
+      margin-bottom: 25px;
+      color: var(--ink-2);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .stats-grid {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {}
+
+    .stat-box .val {
+      display: block;
+      font-size: 32px;
+      font-weight: 700;
+      color: #050d18;
+      line-height: 1.2;
+    }
+
+    .stat-box .lbl {
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-top: 4px;
+    }
+
+    .about-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14.5px;
+      color: var(--ink-2);
+    }
+
+    .about-list .num {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 35px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-family: var(--mono);
+      padding: 6px 14px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 100px;
+    }
+
+    .skills-wrapper {
+      padding-top: 25px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .skills-wrapper h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #173b6c;
+      margin-bottom: 15px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-2);
+    }
+
+    .skill-item::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* Projects Section */
+    .projects {
+      background: var(--white);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-thumb {
+      height: 220px;
+      background: #f8f9fa;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.1);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 11px;
+      font-family: var(--mono);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .project-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-domain {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #173b6c;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--ink-2);
+      margin-bottom: 15px;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tags span {
+      font-size: 11px;
+      font-family: var(--mono);
+      background: var(--white);
+      color: var(--ink-2);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+    }
+
+    /* Experience Section */
+    .resume-timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid var(--accent);
+      margin-top: 10px;
+    }
+
+    .resume-item {
+      position: relative;
+      padding-bottom: 30px;
+    }
+
+    .resume-item::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      left: -28px;
+      top: 6px;
+      background: var(--accent);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px var(--accent-light);
+      z-index: 10;
+    }
+
+    .resume-timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: var(--accent);
+      left: -2px;
+      top: 0;
+      opacity: 0.3;
+    }
+
+    .resume-item h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #050d18;
+      margin-bottom: 5px;
+    }
+
+    .resume-item h5 {
+      font-size: 13px;
+      background: var(--accent-light);
+      padding: 5px 15px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--ink);
+      border-radius: 4px;
+      font-family: var(--mono);
+    }
+
+    .resume-item p.company {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .resume-item p.desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-2);
+    }
+
+    .desc-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    .desc-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    .desc-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--white);
+      padding: 80px 40px;
+    }
+
+    .contact .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-email {
+      background: var(--accent);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(20, 157, 221, 0.25);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-email:hover {
+      background: #37b3ed;
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 1199px) {
+      #header {
+        left: -300px;
+      }
+
+      #main {
+        margin-left: 0;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .about .section-title {
+        display: none;
+      }
+
+      .about .about-content {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .mobile-name {
+        display: block;
+        font-size: 26px;
+        font-weight: 700;
+        color: #173b6c;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      .about-info h3 {
+        text-align: center;
+        font-size: 19px;
+      }
+
+      .about-info .desc {
+        text-align: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-img {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        box-shadow: 15px 15px 0px var(--accent-light) !important;
+      }
+
+      .stats-grid {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section {
+        padding: 50px 20px;
+      }
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 60px 0;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .btn-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(20, 157, 221, 0.3);
+    }
+
+    .btn-email:hover {
+      background: var(--accent-2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(20, 157, 221, 0.4);
+    }
+
+    @media (max-width: 576px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile Toggle -->
+  <button type="button" class="mobile-nav-toggle"
+    onclick="document.body.classList.toggle('mobile-nav-active')">☰</button>
+
+  <!-- Header / Sidebar -->
+  <header id="header">
+    <div class="profile">
+      <img src="images/Jane.jpg" alt="Jane Chiang" class="profile-img" style="object-position: top;">
+      <h1><a href="index.html">江翊蓁</a></h1>
+      <span class="role">Jane</span>
+      <span class="role" style="margin-top:2px;">Product & Project Manager</span>
+    </div>
+
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#about" class="active"><span>About</span></a></li>
+        <li><a href="#projects"><span>Projects</span></a></li>
+        <li><a href="#experience"><span>Experience</span></a></li>
+        <li><a href="#contact"><span>Contact</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="section-title">
+        <h2>About</h2>
+      </div>
+
+      <div class="about-content">
+        <div class="about-info">
+          <h2 class="mobile-name">江翊蓁 Jane</h2>
+          <h3>Product & Project Manager</h3>
+          <p class="desc">
+            擁有 6+ 年 PM 經歷，橫跨社群 App、MarTech 數位行銷、電商 B2B 平台及聚合交通碼 App。善於從 0 到 1 建立產品模組，以數據驅動迭代與跨組協作為核心工作方法。
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-box"><span class="val">6+</span><span class="lbl">年 PM 經歷</span></div>
+            <div class="stat-box"><span class="val">10+</span><span class="lbl">企業客戶</span></div>
+            <div class="stat-box"><span class="val">60%+</span><span class="lbl">客戶續約率</span></div>
+          </div>
+
+          <ul class="about-list">
+            <li><span class="num">01</span>6 年產品及專案管理經驗，涵蓋社群平台、Martech、電子商務等領域。</li>
+            <li><span class="num">02</span>成功策劃從 0 到 1 的產品模組，同時管理 10+ 知名企業客戶的 SaaS 產品與客製化專案，續約率超過 60%。</li>
+            <li><span class="num">03</span>曾負責 2B / 2C 產品線，運用 Scrum 開發週期推動產品迭代。</li>
+            <li><span class="num">04</span>各文件產出（PRD / WBS / Wireframe / Prototype 等）、項目排程及專案推動。</li>
+            <li><span class="num">05</span>善用業餘時間參加 UX 線上課程與線下工作坊，持續精進產品與用戶體驗思維。</li>
+          </ul>
+
+          <div class="tags">
+            <span class="tag">2B / 2C</span>
+            <span class="tag">Scrum / Agile</span>
+            <span class="tag">PRD · WBS</span>
+            <span class="tag">Wireframe</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">MarTech</span>
+            <span class="tag">SaaS</span>
+          </div>
+
+          <div class="skills-wrapper">
+            <h4>Core Skills</h4>
+            <div class="skills-grid">
+              <div class="skill-item">Roadmap Planning</div>
+              <div class="skill-item">Backlog Grooming</div>
+              <div class="skill-item">User Research</div>
+              <div class="skill-item">A/B Testing</div>
+              <div class="skill-item">Data Analysis</div>
+              <div class="skill-item">Figma · Prototype</div>
+              <div class="skill-item">Scrum / Agile</div>
+              <div class="skill-item">Stakeholder Mgmt</div>
+            </div>
+          </div>
+        </div>
+        <img src="images/Jane.jpg" alt="Jane Chiang" class="about-img"
+          style="object-position: top; box-shadow: 20px 20px 0px var(--accent-light);">
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="section-title">
+        <h2>專案作品 Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+        <!-- P01 -->
+        <a class="project-card" href="project-01.html" target="_blank">
+          <div class="project-thumb"><img src="images/p01_thumb.png" alt="Social App"><span
+              class="project-badge">2C</span></div>
+          <div class="project-body">
+            <div class="project-domain">Social APP</div>
+            <div class="project-name">社群 App</div>
+            <div class="project-desc">主打在地社群互動的行動應用程式，涉及 A/B 測試、新用戶引導及匿名配對功能開發。</div>
+            <div class="project-tags">
+              <span>Social APP</span><span>Growth</span><span>Hybrid App</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P02 -->
+        <a class="project-card" href="project-02.html" target="_blank">
+          <div class="project-thumb"><img src="images/p02_thumb.png" alt="Coupon Module"><span
+              class="project-badge">2B</span></div>
+          <div class="project-body">
+            <div class="project-domain">MarTech</div>
+            <div class="project-name">票券行銷模組</div>
+            <div class="project-desc">設計互動行銷模組，解決品牌會員擴增緩慢問題，改版品牌網站銷售增長 20%。</div>
+            <div class="project-tags">
+              <span>B2B SaaS</span><span>OMO</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P03 -->
+        <a class="project-card" href="project-03.html" target="_blank">
+          <div class="project-thumb"><img src="images/p03_thumb.png" alt="OMO Marketing"><span
+              class="project-badge">2B</span></div>
+          <div class="project-body">
+            <div class="project-domain">MarTech</div>
+            <div class="project-name">婦幼品牌整合行銷平台</div>
+            <div class="project-desc">結合 LINE 與 OMO 策略，打造自動化領券與問券追蹤系統。</div>
+            <div class="project-tags">
+              <span>OMO</span><span>MarTech</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P04 -->
+        <a class="project-card" href="project-04.html" target="_blank">
+          <div class="project-thumb"><img src="images/p04_thumb.png" alt="Smart Mobility"><span
+              class="project-badge">2C</span></div>
+          <div class="project-body">
+            <div class="project-domain">MaaS</div>
+            <div class="project-name">聚合交通碼 App</div>
+            <div class="project-desc">整合捷運、公車與第三方支付，推廣綠色交通紀錄並優化 2C 支付流程。</div>
+            <div class="project-tags">
+              <span>MaaS</span><span>FinTech</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P05 -->
+        <a class="project-card" href="project-05.html" target="_blank">
+          <div class="project-thumb"><img src="images/p05_thumb.png" alt="B2B E-commerce"><span
+              class="project-badge">2B</span></div>
+          <div class="project-body">
+            <div class="project-domain">E-Commerce</div>
+            <div class="project-name">電商 B2B 平台</div>
+            <div class="project-desc">規劃 2B 產品策略與 Roadmap，優化商品、訂單、憑證核銷核心後台功能。</div>
+            <div class="project-tags">
+              <span>B2B</span><span>Strategy</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P06 -->
+        <a class="project-card" href="project-06.html" target="_blank">
+          <div class="project-thumb"><img src="images/p06_thumb.png" alt="Internal Dispatch"><span
+              class="project-badge">Workflow</span></div>
+          <div class="project-body">
+            <div class="project-domain">Enterprise ERP</div>
+            <div class="project-name">企業內部派單系統</div>
+            <div class="project-desc">將繁複紙本工單數位化，建立主管審核與工班執行的一條龍派發機制。</div>
+            <div class="project-tags">
+              <span>Workflow</span><span>ERP</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P07 -->
+        <a class="project-card" href="project-07.html" target="_blank">
+          <div class="project-thumb"><img src="images/p07_thumb.png" alt="OCR Invoice"><span
+              class="project-badge">AI</span></div>
+          <div class="project-body">
+            <div class="project-domain">MarTech / AI</div>
+            <div class="project-name">OCR 發票登錄平台</div>
+            <div class="project-desc">整合 AI OCR 辨識技術，優化活動登錄體驗並掌握精準消費大數據。</div>
+            <div class="project-tags">
+              <span>Campaign</span><span>OCR</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P08 -->
+        <a class="project-card" href="project-08.html" target="_blank">
+          <div class="project-thumb"><img src="images/p08_thumb.png" alt="LINE CRM"><span
+              class="project-badge">CRM</span></div>
+          <div class="project-body">
+            <div class="project-domain">CRM / LINE</div>
+            <div class="project-name">LINE 串聯企業 CRM</div>
+            <div class="project-desc">深度整合 LINE 與企業 CRM，實現分眾精準推播與個人化標籤行銷。</div>
+            <div class="project-tags">
+              <span>LINE</span><span>CRM</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- P09 -->
+        <a class="project-card" href="project-09.html" target="_blank">
+          <div class="project-thumb"><img src="images/p09_thumb.png" alt="F&B Branding"><span
+              class="project-badge">Branding</span></div>
+          <div class="project-body">
+            <div class="project-domain">Branding / CMS</div>
+            <div class="project-name">連鎖餐飲品牌官網</div>
+            <div class="project-desc">重塑品牌數位形象，整合 RWD 與 CMS，提升加盟與門市找店轉化。</div>
+            <div class="project-tags">
+              <span>Branding</span><span>CMS</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+      <div class="section-title">
+        <h2>工作經歷 Resume</h2>
+      </div>
+
+      <div class="resume-timeline">
+        <div class="resume-item">
+          <h4>產品經理</h4>
+          <h5>2023.04 - 2024.03</h5>
+          <p class="company">東森股份有限公司 · 社群平台</p>
+          <ul class="desc-list">
+            <li>利用 A/B 測試，針對特定使用者釋出介面內容與功能，以最小幅度影響，了解用戶需求及功能成效。</li>
+            <li>優化新用戶、新功能引導流程並透過連續獎勵制度，增強新用戶體驗、DAU 增長且用戶黏著度提高 20% 。</li>
+            <li>藉由結合七夕行銷活動，設計規劃匿名配對聊天功能，提高用戶互動率。</li>
+            <li>收集並分析 500+ 用戶反饋，優化 APP 介面與功能。</li>
+            <li>主導社群 App 從 0 到上架（Android／iOS），統籌 WebView 與 Native 頁面的功能規格設計，涵蓋會員系統、內容發布、虛擬幣獎勵機制、私訊、通知等核心模組。</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <h4>資深專案經理</h4>
+          <h5>2022.04 - 2023.04</h5>
+          <p class="company">好思行銷</p>
+          <ul class="desc-list">
+            <li>設計互動行銷模組，解決品牌會員擴增緩慢問題：針對不同產業需求，前後台架構設計可擴充性，供多種互動選擇，使品牌快速提升互動率、搜整並分析客戶輪廓。</li>
+            <li>改版品牌網站，三個月內促進產品銷售增長 20%。</li>
+            <li>規劃聚合交通碼 APP，整合運具服務，實現跨運具預訂和金流串接功能。</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <h4>B2B 產品經理</h4>
+          <h5>2021.05 - 2021.08</h5>
+          <p class="company">17Life 康太數位整合</p>
+          <ul class="desc-list">
+            <li>規劃 2B 產品線策略，制定 Roadmap：調研市場以及用戶需求，協調技術、業務與運營團隊後訂定產品規格方向、定期追蹤進度以實踐每次更版目標。</li>
+            <li>將策略變為具體功能，完成商品、訂單、憑證核銷管理內的主要功能：根據用戶需求特性，考量舊有資料架構，新增刪減相關功能，並進行原型設計、易用性測試等，以滿足使用者需求。</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <h4>資深管理規劃師</h4>
+          <h5>2019.11 - 2021.03</h5>
+          <p class="company">愛酷智能科技</p>
+          <ul class="desc-list">
+            <li>0-1 產品設計，使品牌轉換率提升 25%：參與模組“優惠券發放”的策劃與需求分析，可於後台彈性設定內容並即時彙整各類數據於 dashboard，並用漏斗分析優化前台步驟，提升轉換率，有效帶動營收成長。
+            </li>
+            <li>整合客戶各渠道資料、建置派單系統：整合 CRM 與官網資料數據，規劃訂單派案流程及後台功能，依會員瀏覽歷程、活動參與紀錄智慧推薦行程，為廠商拓展業務項目，也是公司 CDP 產品之雛形。</li>
+            <li>打造 LINE 線上活動，兩個月內提升參與率 20%、高達 20K+ 登錄筆數：對品牌發票登錄活動流程進行分析並找出轉換率低的節點，提出活動建議優化項目。</li>
+            <li>監控並分析專案運營表現，規劃教育訓練課程，給予實用產業案例和活動策略，強化客戶黏著度與合作效益。</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <h4>網站專案企劃</h4>
+          <h5>2019.06 - 2019.11</h5>
+          <p class="company">1111 人力銀行</p>
+          <ul class="desc-list">
+            <li>優化許久未更新的專區，提升流量至公司前三名。</li>
+            <li>線上活動策劃，專區活動再創高峰：設計線上活動流程、策劃網站與曝光宣傳方式。</li>
+            <li>跨部門合作，優化原架構改善用戶體驗：接手媒體部門遲未啟動的網站專案，建立多方溝通後規劃執行，順利讓延宕許久之網站上線，獲主管公開表揚。</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <h4>網站專案企劃</h4>
+          <h5>2016.09 - 2018.03</h5>
+          <p class="company">德叡股份有限公司</p>
+          <ul class="desc-list">
+            <li>電商平台 CMS 系統規劃，設計前後台各式行銷優惠活動、大量詢價功能，縮短 20% 訂單流程。</li>
+            <li>針對用戶需求，彙整運行多年的系統問題，協同產品經理設計組成產品，並於兩個月內優化完成。</li>
+            <li>在項目週期緊張和開發資源不充足的情況，通過調整優先級，準時上線率達到 95%。</li>
+            <li>與 PO 共同規劃月度和季度系統項目並確定優先順序，進行時程管理及人力分配。流程優化後，使溝通成本降低、結案率提高 20％ 以上。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <a href="mailto:contact@janechiang.me" class="btn-email">✉ 聯絡我 (Email)</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Scrollspy functionality
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Mobile Nav Toggle functionality
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('mobile-nav-active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

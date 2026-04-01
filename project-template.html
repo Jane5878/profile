@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P02 [專案名稱] — Jane Chiang Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+                    :root {
+            --bg: #f5f8fd;
+            --bg-2: #e9ecef;
+            --bg-3: #dde2e6;
+            --white: #fff;
+            --ink: #272829;
+            --ink-2: #45505b;
+            --ink-3: #728394;
+            --accent: #149ddd;
+            --accent-2: #1080ca;
+            --accent-light: #dff3fc;
+            --accent-bg: #eaf6fd;
+            --rule: #eef0f2;
+            --sans: 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --r: 4px;
+            --r-lg: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 52px;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-back:hover {
+      color: var(--accent);
+    }
+
+    .nav-back svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-brand {
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .nav-badge {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    /* HERO BANNER */
+    .proj-hero {
+      margin-top: 60px;
+      min-height: auto;
+      padding: 80px 52px 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .proj-hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .proj-hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .proj-hero-title {
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #173b6c;
+      margin-bottom: 12px;
+    }
+
+    .proj-hero-title em {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .proj-hero-sub {
+      font-size: 16px;
+      color: var(--ink-2);
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-lbl {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .meta-val {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* MAIN LAYOUT */
+    .page-body {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 52px;
+    }
+
+    /* SECTION CARDS */
+    .card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .card-head {
+      padding: 20px 30px;
+      background: #f8f9fa;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card-head-num {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #173b6c;
+    }
+
+    .card-head-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-left: auto;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    /* OVERVIEW & COLUMNS */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .box {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      padding: 25px;
+    }
+
+    .box.full {
+      grid-column: span 2;
+    }
+
+    .box-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .box p {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.75;
+    }
+
+    .box-list {
+      list-style: none;
+    }
+
+    .box-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .box-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .bl {
+      color: var(--accent);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ROLE TABLE */
+    .role-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .rr>div {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14.5px;
+    }
+
+    .rr:last-child>div {
+      border-bottom: none;
+    }
+
+    .rk {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #173b6c;
+    }
+
+    .rv {
+      background: var(--white);
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    /* DOCUMENT GALLERY */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .doc-frame {
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+
+    .doc-frame:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .doc-ph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--ink-3);
+    }
+
+    .doc-ph-icon {
+      font-size: 36px;
+      opacity: 0.5;
+    }
+
+    .doc-ph-lbl {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .doc-cap {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .doc-note {
+      font-size: 13px;
+      color: var(--ink-3);
+      font-family: var(--mono);
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-radius: var(--r);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* CHALLENGES */
+    .ch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .ch-box {
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      padding: 28px;
+    }
+
+    .ch-icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .ch-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #173b6c;
+      margin-bottom: 10px;
+    }
+
+    .ch-text {
+      font-size: 14px;
+      color: var(--ink-2);
+      line-height: 1.7;
+    }
+
+    .ch-learn {
+      margin-top: 15px;
+      padding: 10px 14px;
+      background: var(--accent-light);
+      border-radius: var(--r);
+      font-size: 13px;
+      color: #0e5888;
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    /* PLACEHOLDER BLOCK */
+    .placeholder-block {
+      background: #f8f9fa;
+      border: 2px dashed var(--rule);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      text-align: center;
+      color: var(--ink-3);
+    }
+
+    .placeholder-block p {
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--ink-2);
+    }
+
+    .placeholder-block small {
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    /* PAGINATION */
+    .proj-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+      margin-top: 10px;
+    }
+
+    .proj-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .proj-nav-link:hover {
+      color: var(--accent);
+    }
+
+    .proj-nav-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 400;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      padding: 30px 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-3);
+    }
+
+    .footer-back {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-back:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .proj-hero {
+        padding: 60px 24px 40px;
+      }
+
+      .page-body {
+        padding: 40px 24px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .box.full {
+        grid-column: span 1;
+      }
+
+      .ch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rk {
+        border-bottom: none !important;
+      }
+
+      footer {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-back" href="index.html#projects">
+      <svg viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      返回作品集
+    </a>
+    <span class="nav-brand">Jane Chiang</span>
+    <span class="nav-badge">P02 · [領域]</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="proj-hero">
+    <div class="proj-hero-inner">
+      <div class="proj-hero-eyebrow">P02 · [領域] · [2B/2C]</div>
+      <h1 class="proj-hero-title">[專案名稱]<br><em>[英文副標或產品定位]</em></h1>
+      <p class="proj-hero-sub">[一到兩句話說明這個專案是什麼、解決什麼問題。]</p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="meta-lbl">Period</div>
+          <div class="meta-val">[年份]</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-lbl">Platform</div>
+          <div class="meta-val">[Web / App / Both]</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-lbl">My Role</div>
+          <div class="meta-val">[PM / PjM / 其他]</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-lbl">Team Size</div>
+          <div class="meta-val">[X] 人</div>
+        </div>
+      </div>
+      <div class="chips-row">
+        <span class="chip">[關鍵技能 1]</span>
+        <span class="chip">[技能 2]</span>
+        <span class="chip">[技能 3]</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- 01 OVERVIEW -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">01</span>
+        <span class="card-head-title">專案概述</span>
+        <span class="card-head-sub">Project Overview</span>
+      </div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="box full">
+            <div class="box-label">背景 Background</div>
+            <p>[說明這個專案的背景，為什麼需要做這個產品/功能？市場背景或公司策略脈絡是什麼？]</p>
+          </div>
+          <div class="box">
+            <div class="box-label">核心目標 Goals</div>
+            <ul class="box-list">
+              <li><span class="bl">→</span>[目標 1]</li>
+              <li><span class="bl">→</span>[目標 2]</li>
+              <li><span class="bl">→</span>[目標 3]</li>
+            </ul>
+          </div>
+          <div class="box">
+            <div class="box-label">專案規模 Scope</div>
+            <ul class="box-list">
+              <li><span class="bl">·</span>時程：[X 個月]</li>
+              <li><span class="bl">·</span>團隊：[前端 X、後端 X、設計 X ...]</li>
+              <li><span class="bl">·</span>服務對象：[B2B / B2C / 內部工具]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 MY ROLE -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">02</span>
+        <span class="card-head-title">我的角色與職責</span>
+        <span class="card-head-sub">My Role & Responsibilities</span>
+      </div>
+      <div class="card-body">
+        <div class="role-grid">
+          <div class="rr">
+            <div class="rk">[職責 1]</div>
+            <div class="rv">[描述你所做的事情。]</div>
+          </div>
+          <div class="rr">
+            <div class="rk">[職責 2]</div>
+            <div class="rv">[描述你所做的事情。]</div>
+          </div>
+          <div class="rr">
+            <div class="rk">[職責 3]</div>
+            <div class="rv">[描述你所做的事情。]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 PROCESS -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">03</span>
+        <span class="card-head-title">執行過程與核心模組</span>
+        <span class="card-head-sub">Process & Modules</span>
+      </div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="box">
+            <div class="box-label">功能模組</div>
+            <ul class="box-list">
+              <li><span class="bl">→</span>[模組 1]</li>
+              <li><span class="bl">→</span>[模組 2]</li>
+              <li><span class="bl">→</span>[模組 3]</li>
+            </ul>
+          </div>
+          <div class="box">
+            <div class="box-label">方法工具</div>
+            <ul class="box-list">
+              <li><span class="bl">·</span>[工具 1]</li>
+              <li><span class="bl">·</span>[工具 2]</li>
+              <li><span class="bl">·</span>[工具 3]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 RESULTS -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">04</span>
+        <span class="card-head-title">成果數據</span>
+        <span class="card-head-sub">Results & Impact</span>
+      </div>
+      <div class="card-body">
+        <div class="two-col" style="margin-bottom:24px;">
+          <div class="box">
+            <div class="box-label">量化成果</div>
+            <ul class="box-list">
+              <li><span class="bl">📈</span>[數據指標 1]</li>
+              <li><span class="bl">📈</span>[數據指標 2]</li>
+            </ul>
+          </div>
+          <div class="box">
+            <div class="box-label">質化成果</div>
+            <ul class="box-list">
+              <li><span class="bl">✓</span>[完成的事情 1]</li>
+              <li><span class="bl">✓</span>[完成的事情 2]</li>
+            </ul>
+          </div>
+        </div>
+        <div class="placeholder-block">
+          <p>📊 此處可放入圖表或是結果比較表格</p>
+          <small>使用 &lt;table&gt; 或截圖呈現數據影響力</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 DOCUMENTS -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">05</span>
+        <span class="card-head-title">文件展示</span>
+        <span class="card-head-sub">Wireframe / PRD</span>
+      </div>
+      <div class="card-body">
+        <div class="doc-grid">
+          <!-- 照片上傳區塊 -->
+          <div>
+            <div class="doc-frame">
+              <div class="doc-ph">
+                <div class="doc-ph-icon">📐</div>
+                <div class="doc-ph-lbl">上傳 wireframe 或流程圖</div>
+              </div>
+            </div>
+            <div class="doc-cap">[檔案說明]</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <div class="doc-ph">
+                <div class="doc-ph-icon">📄</div>
+                <div class="doc-ph-lbl">上傳規格文件</div>
+              </div>
+            </div>
+            <div class="doc-cap">[檔案說明]</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <div class="doc-ph">
+                <div class="doc-ph-icon">📊</div>
+                <div class="doc-ph-lbl">上傳流程圖或架構圖</div>
+              </div>
+            </div>
+            <div class="doc-cap">[檔案說明]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 CHALLENGES -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-head-num">06</span>
+        <span class="card-head-title">挑戰與學習</span>
+        <span class="card-head-sub">Challenges & Key Learnings</span>
+      </div>
+      <div class="card-body">
+        <div class="ch-grid">
+          <div class="ch-box">
+            <div class="ch-icon">⚙️</div>
+            <div class="ch-title">[挑戰名稱]</div>
+            <div class="ch-text">[描述遇到什麼問題與解法。]</div>
+            <div class="ch-learn">→ [從中學習到的啟發]</div>
+          </div>
+          <div class="ch-box">
+            <div class="ch-icon">🤝</div>
+            <div class="ch-title">[挑戰名稱 2]</div>
+            <div class="ch-text">[遇到跨部門溝通或資源問題。]</div>
+            <div class="ch-learn">→ [獲得的協作經驗]</div>
+          </div>
+          <div class="ch-box">
+            <div class="ch-icon">🔬</div>
+            <div class="ch-title">[挑戰名稱 3]</div>
+            <div class="ch-text">[技術或市場回饋的瓶頸。]</div>
+            <div class="ch-learn">→ [產品迭代的思考策略]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="proj-nav">
+      <a class="proj-nav-link" href="project-01.html" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        <div><span class="proj-nav-label">上一個專案</span>社群 App</div>
+      </a>
+      <a class="proj-nav-link" href="#" target="_blank" style="text-align:right">
+        <div><span class="proj-nav-label">下一個專案</span>[名稱]</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+
+      <footer>
+        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
+        <a class="footer-back" href="index.html#projects" style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to Portfolio</a>
+    </footer>
+
+</body>
+
+</html>
