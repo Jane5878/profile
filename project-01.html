@@ -6,37 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>P01 社群 App — Jane Chiang Portfolio</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
-                    :root {
-            --bg: #f5f8fd;
-            --bg-2: #e9ecef;
-            --bg-3: #dde2e6;
-            --white: #fff;
-            --ink: #272829;
-            --ink-2: #45505b;
-            --ink-3: #728394;
-            --accent: #149ddd;
-            --accent-2: #1080ca;
-            --accent-light: #dff3fc;
-            --accent-bg: #eaf6fd;
-            --rule: #eef0f2;
-            --sans: 'Outfit', sans-serif;
-            --mono: 'JetBrains Mono', monospace;
-            --r: 4px;
-            --r-lg: 8px;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
+    :root {
+      --bg: #f5f8fd;
+      --bg-2: #e9ecef;
+      --white: #fff;
+      --ink: #272829;
+      --ink-2: #45505b;
+      --ink-3: #728394;
+      --accent: #0f7adb;
+      --accent-2: #0a5fad;
+      --accent-light: #dbeeff;
+      --accent-bg: #eaf3ff;
+      --rule: #eef0f2;
+      --teal: #0db5a3;
+      --teal-light: #d4f5f1;
+      --amber: #f59e0b;
+      --amber-light: #fef3c7;
+      --coral: #f05c5c;
+      --coral-light: #fde8e8;
+      --violet: #7c3aed;
+      --sans: 'Outfit', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --r: 4px;
+      --r-lg: 10px;
+      --r-xl: 16px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, .06);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, .10);
+    }
 
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: smooth
     }
 
     body {
@@ -44,7 +52,7 @@
       background: var(--bg);
       color: var(--ink);
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      -webkit-font-smoothing: antialiased
     }
 
     /* NAV */
@@ -54,15 +62,15 @@
       left: 0;
       right: 0;
       z-index: 200;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 52px;
       height: 60px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .03)
     }
 
     .nav-back {
@@ -73,11 +81,11 @@
       color: var(--ink-2);
       font-size: 14px;
       font-weight: 500;
-      transition: 0.3s;
+      transition: .3s
     }
 
     .nav-back:hover {
-      color: var(--accent);
+      color: var(--accent)
     }
 
     .nav-back svg {
@@ -86,532 +94,1035 @@
       stroke: currentColor;
       fill: none;
       stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round
     }
 
     .nav-brand {
       font-weight: 600;
       font-size: 18px;
-      color: var(--ink);
+      color: var(--ink)
     }
 
     .nav-badge {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       background: var(--accent-light);
       color: var(--accent);
       padding: 4px 12px;
       border-radius: 100px;
-      font-weight: 600;
+      font-weight: 600
     }
 
-    /* HERO BANNER */
+    /* HERO */
     .proj-hero {
       margin-top: 60px;
-      min-height: auto;
-      padding: 80px 52px 60px;
-      background: var(--white);
-      border-bottom: 1px solid var(--rule);
+      padding: 72px 52px 52px;
+      background: linear-gradient(135deg, #0a1628 0%, #0f3460 50%, #0f7adb 100%);
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .proj-hero-inner {
       position: relative;
       z-index: 1;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 0 auto
     }
 
     .proj-hero-eyebrow {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, .6);
+      letter-spacing: .12em;
       text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 600;
+      gap: 10px
     }
 
     .proj-hero-eyebrow::before {
       content: '';
       width: 24px;
       height: 2px;
-      background: var(--accent);
+      background: var(--teal)
     }
 
     .proj-hero-title {
-      font-size: clamp(36px, 5vw, 54px);
+      font-size: clamp(34px, 5vw, 54px);
       font-weight: 700;
       line-height: 1.1;
-      color: #173b6c;
-      margin-bottom: 12px;
+      color: #fff;
+      margin-bottom: 14px
     }
 
     .proj-hero-title em {
-      color: var(--accent);
+      color: var(--teal);
       font-style: normal;
-      font-weight: 500;
+      font-weight: 400
     }
 
     .proj-hero-sub {
-      font-size: 16px;
-      color: var(--ink-2);
-      margin-bottom: 30px;
-      max-width: 600px;
-      line-height: 1.7;
+      font-size: 15px;
+      color: rgba(255, 255, 255, .72);
+      margin-bottom: 36px;
+      max-width: 620px;
+      line-height: 1.8
     }
 
     .meta-row {
       display: flex;
       gap: 40px;
       flex-wrap: wrap;
-      padding-top: 20px;
-      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, .12)
     }
 
     .meta-item {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px
     }
 
     .meta-lbl {
       font-family: var(--mono);
-      font-size: 11px;
-      color: var(--ink-3);
+      font-size: 10px;
+      color: rgba(255, 255, 255, .45);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 500;
+      letter-spacing: .08em
     }
 
     .meta-val {
       font-size: 15px;
       font-weight: 600;
-      color: var(--ink);
+      color: #fff
     }
 
     .chips-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 25px;
+      margin-top: 28px
     }
 
     .chip {
       font-family: var(--mono);
-      font-size: 12px;
-      padding: 6px 14px;
+      font-size: 11px;
+      padding: 5px 14px;
       border-radius: 100px;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-weight: 500;
+      background: rgba(255, 255, 255, .1);
+      color: rgba(255, 255, 255, .85);
+      border: 1px solid rgba(255, 255, 255, .15);
+      font-weight: 500
     }
 
-    .chip.ac {
-      background: var(--accent);
-      color: var(--white);
+    .chip.teal {
+      background: rgba(13, 181, 163, .2);
+      color: #7eeee4;
+      border-color: rgba(13, 181, 163, .3)
     }
 
-    /* MAIN LAYOUT */
+    .chip.amber {
+      background: rgba(245, 158, 11, .2);
+      color: #fcd34d;
+      border-color: rgba(245, 158, 11, .3)
+    }
+
+    /* LAYOUT */
     .page-body {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 60px 52px;
+      padding: 56px 52px
     }
 
-    /* SECTION CARDS */
     .card {
       background: var(--white);
-      border-radius: var(--r-lg);
-      margin-bottom: 30px;
+      border-radius: var(--r-xl);
+      margin-bottom: 28px;
       overflow: hidden;
       box-shadow: var(--shadow);
+      border: 1px solid var(--rule)
     }
 
     .card-head {
-      padding: 20px 30px;
-      background: #f8f9fa;
+      padding: 18px 28px;
+      background: linear-gradient(90deg, #f8f9ff, #f0f4ff);
       border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 14px
     }
 
-    .card-head-num {
+    .card-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
     }
 
     .card-head-title {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 600;
-      color: #173b6c;
+      color: #0f2244;
+      line-height: 1.2
     }
 
     .card-head-sub {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--ink-3);
-      margin-left: auto;
+      margin-left: auto
     }
 
     .card-body {
-      padding: 30px;
+      padding: 28px
     }
 
-    /* OVERVIEW GRID */
-    .overview-grid {
+    /* GRID */
+    .g2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 20px
     }
 
-    .ov-box {
+    .g3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px
+    }
+
+    .full {
+      grid-column: span 2
+    }
+
+    /* BOXES */
+    .box {
       background: var(--bg);
       border-radius: var(--r-lg);
-      padding: 25px;
+      padding: 22px;
+      border: 1px solid var(--rule)
     }
 
-    .ov-box.full {
-      grid-column: span 2;
+    .box.ba {
+      border-left: 3px solid var(--accent)
     }
 
-    .ov-label {
+    .box.bt {
+      border-left: 3px solid var(--teal)
+    }
+
+    .box.bam {
+      border-left: 3px solid var(--amber)
+    }
+
+    .box-lbl {
       font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
       padding-bottom: 10px;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule)
     }
 
-    .ov-box p {
-      font-size: 15px;
-      color: var(--ink-2);
-      line-height: 1.75;
+    .box-lbl.a {
+      color: var(--accent)
     }
 
-    .ov-list {
-      list-style: none;
+    .box-lbl.t {
+      color: var(--teal)
     }
 
-    .ov-list li {
-      display: flex;
-      gap: 12px;
+    .box-lbl.am {
+      color: var(--amber)
+    }
+
+    .box-lbl.co {
+      color: var(--coral)
+    }
+
+    .box p {
       font-size: 14.5px;
       color: var(--ink-2);
-      padding: 10px 0;
+      line-height: 1.8
+    }
+
+    .bl-list {
+      list-style: none
+    }
+
+    .bl-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-2);
+      padding: 9px 0;
       border-bottom: 1px solid var(--rule);
+      line-height: 1.6
     }
 
-    .ov-list li:last-child {
+    .bl-list li:last-child {
       border-bottom: none;
-      padding-bottom: 0;
+      padding-bottom: 0
     }
 
-    .ov-bullet {
-      color: var(--accent);
-      font-weight: 600;
+    .mk {
+      font-weight: 700;
+      flex-shrink: 0
+    }
+
+    .mk.a {
+      color: var(--accent)
+    }
+
+    .mk.t {
+      color: var(--teal)
+    }
+
+    .mk.am {
+      color: var(--amber)
+    }
+
+    .mk.co {
+      color: var(--coral)
+    }
+
+    .mk.v {
+      color: var(--violet)
     }
 
     /* ROLE TABLE */
-    .role-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 0;
+    .rtable {
       border: 1px solid var(--rule);
       border-radius: var(--r-lg);
-      overflow: hidden;
+      overflow: hidden
     }
 
-    .role-row {
-      display: contents;
+    .rrow {
+      display: grid;
+      grid-template-columns: 200px 1fr
     }
 
-    .role-row>div {
+    .rrow+.rrow {
+      border-top: 1px solid var(--rule)
+    }
+
+    .rk {
+      background: #f7f9ff;
       padding: 16px 20px;
-      border-bottom: 1px solid var(--rule);
-      font-size: 14.5px;
-    }
-
-    .role-row:last-child>div {
-      border-bottom: none;
-    }
-
-    .role-key {
-      background: #f8f9fa;
+      font-size: 14px;
       font-weight: 600;
-      color: #173b6c;
+      color: #0f2244;
+      border-right: 1px solid var(--rule)
     }
 
-    .role-val {
+    .rv {
       background: var(--white);
+      padding: 16px 20px;
+      font-size: 14px;
       color: var(--ink-2);
-      line-height: 1.7;
+      line-height: 1.75
     }
 
-    /* DOCUMENT GALLERY */
-    .doc-grid {
+    /* MODULE CARDS */
+    .mod-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px
     }
 
-    .doc-frame {
-      background: var(--bg);
+    .mod {
+      background: var(--white);
       border: 1px solid var(--rule);
       border-radius: var(--r-lg);
-      aspect-ratio: 4/3;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
+      overflow: hidden
+    }
+
+    .mod-hd {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .mod-hd.b {
+      background: linear-gradient(90deg, #dbeeff, #e8f3ff)
+    }
+
+    .mod-hd.t {
+      background: linear-gradient(90deg, #d4f5f1, #e0f9f6)
+    }
+
+    .mod-hd.am {
+      background: linear-gradient(90deg, #fef3c7, #fef9e7)
+    }
+
+    .mod-hd.co {
+      background: linear-gradient(90deg, #fde8e8, #fff0f0)
+    }
+
+    .mod-hd.v {
+      background: linear-gradient(90deg, #ede9fe, #f3f0ff)
+    }
+
+    .mod-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.3s;
+      font-size: 18px;
+      flex-shrink: 0
     }
 
-    .doc-frame:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
+    .mi-b {
+      background: var(--accent)
     }
 
-    .doc-placeholder {
+    .mi-t {
+      background: var(--teal)
+    }
+
+    .mi-am {
+      background: var(--amber)
+    }
+
+    .mi-co {
+      background: var(--coral)
+    }
+
+    .mi-v {
+      background: var(--violet)
+    }
+
+    .mod-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f2244
+    }
+
+    .mod-sub {
+      font-size: 11px;
+      color: var(--ink-3);
+      font-family: var(--mono)
+    }
+
+    .mod-bd {
+      padding: 16px 18px
+    }
+
+    .fl {
+      list-style: none
+    }
+
+    .fl li {
+      font-size: 13.5px;
+      color: var(--ink-2);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5
+    }
+
+    .fl li:last-child {
+      border-bottom: none
+    }
+
+    .fd {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px
+    }
+
+    .fd.a {
+      background: var(--accent)
+    }
+
+    .fd.t {
+      background: var(--teal)
+    }
+
+    .fd.am {
+      background: var(--amber)
+    }
+
+    .fd.co {
+      background: var(--coral)
+    }
+
+    .fd.v {
+      background: var(--violet)
+    }
+
+    /* PRICING TABLE */
+    .ptable {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--rule)
+    }
+
+    .ptable thead tr {
+      background: #0f2244;
+      color: #fff
+    }
+
+    .ptable th {
+      padding: 13px 18px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--mono)
+    }
+
+    .ptable td {
+      padding: 13px 18px;
+      font-size: 14px;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .ptable tbody tr:last-child td {
+      border-bottom: none
+    }
+
+    .ptable tbody tr:nth-child(even) td {
+      background: #f8f9ff
+    }
+
+    .hl {
+      color: var(--accent);
+      font-weight: 600
+    }
+
+    .fm {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block
+    }
+
+    /* FLOW */
+    .flow {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      gap: 0
+    }
+
+    .fstep {
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-width: 110px;
+      flex: 1
+    }
+
+    .fcircle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 10px;
-      color: var(--ink-3);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1
     }
 
-    .doc-placeholder-icon {
-      font-size: 36px;
-      opacity: 0.5;
+    .fc-a {
+      background: var(--accent);
+      box-shadow: 0 4px 12px rgba(15, 122, 219, .3)
     }
 
-    .doc-placeholder-lbl {
-      font-family: var(--mono);
-      font-size: 12px;
-      text-align: center;
+    .fc-t {
+      background: var(--teal);
+      box-shadow: 0 4px 12px rgba(13, 181, 163, .3)
     }
 
-    .doc-caption {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--ink-3);
-      text-align: center;
-      margin-top: 10px;
+    .fc-am {
+      background: var(--amber);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, .3)
     }
 
-    .doc-note {
+    .fc-co {
+      background: var(--coral);
+      box-shadow: 0 4px 12px rgba(240, 92, 92, .3)
+    }
+
+    .flbl {
       font-size: 13px;
-      color: var(--ink-3);
-      font-family: var(--mono);
-      margin-top: 20px;
-      padding: 12px 16px;
-      background: var(--bg);
-      border-radius: var(--r);
-      border-left: 3px solid var(--accent);
-    }
-
-    /* CHALLENGES */
-    .challenge-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .challenge-box {
-      background: var(--bg);
-      border-radius: var(--r-lg);
-      padding: 28px;
-    }
-
-    .ch-icon {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-
-    .ch-title {
       font-weight: 600;
-      font-size: 16px;
-      color: #173b6c;
-      margin-bottom: 10px;
-    }
-
-    .ch-text {
-      font-size: 14px;
-      color: var(--ink-2);
-      line-height: 1.7;
-    }
-
-    .ch-learn {
-      margin-top: 15px;
-      padding: 10px 14px;
-      background: var(--accent-light);
-      border-radius: var(--r);
-      font-size: 13px;
-      color: #0e5888;
-      font-family: var(--mono);
-      font-weight: 500;
-    }
-
-    /* PAGINATION */
-    .proj-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 30px 0;
+      color: #0f2244;
       margin-top: 10px;
+      text-align: center
     }
 
-    .proj-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--ink-2);
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .proj-nav-link:hover {
-      color: var(--accent);
-    }
-
-    .proj-nav-label {
-      font-family: var(--mono);
+    .fsub {
       font-size: 11px;
       color: var(--ink-3);
-      display: block;
-      margin-bottom: 4px;
-      font-weight: 400;
+      margin-top: 4px;
+      text-align: center;
+      line-height: 1.4
+    }
+
+    .farrow {
+      font-size: 24px;
+      color: #cdd5e0;
+      margin: 13px -4px 0;
+      flex-shrink: 0
+    }
+
+    /* IMPACT */
+    .imp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .imp-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      padding: 22px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .imp-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px
+    }
+
+    .imp-card.b::before {
+      background: var(--accent)
+    }
+
+    .imp-card.t::before {
+      background: var(--teal)
+    }
+
+    .imp-card.am::before {
+      background: var(--amber)
+    }
+
+    .imp-stat {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px
+    }
+
+    .imp-stat.a {
+      color: var(--accent)
+    }
+
+    .imp-stat.t {
+      color: var(--teal)
+    }
+
+    .imp-stat.am {
+      color: var(--amber)
+    }
+
+    .imp-unit {
+      font-size: 18px
+    }
+
+    .imp-lbl {
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.5
+    }
+
+    .imp-sub {
+      font-size: 11px;
+      color: var(--ink-3);
+      margin-top: 4px;
+      font-family: var(--mono)
+    }
+
+    /* PERM TABLE */
+    .permtable {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      overflow: hidden
+    }
+
+    .permtable th {
+      background: #0f2244;
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 13px;
+      text-align: left;
+      font-family: var(--mono)
+    }
+
+    .permtable td {
+      padding: 12px 16px;
+      font-size: 13.5px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-2)
+    }
+
+    .permtable tbody tr:last-child td {
+      border-bottom: none
+    }
+
+    /* PAGE NAV */
+    .pnav-container {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 0 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px
+    }
+
+    .pnav-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-xl);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow)
+    }
+
+    .pnav-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent)
+    }
+
+    .pnav-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-3);
+      transition: .3s
+    }
+
+    .pnav-card:hover .pnav-icon {
+      background: var(--accent-light);
+      color: var(--accent)
+    }
+
+    .pnav-content {
+      flex: 1
+    }
+
+    .pnav-subtitle {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--ink-3);
+      margin-bottom: 4px
+    }
+
+    .pnav-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #0f2244
     }
 
     /* FOOTER */
-    footer {
-      background: var(--white);
-      border-top: 1px solid var(--rule);
-      padding: 30px 52px;
+    .site-footer {
+      background: #0f2244;
+      padding: 60px 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1)
+    }
+
+    .footer-right {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 15px;
+      gap: 8px;
+      transition: .3s
     }
 
-    .footer-copy {
-      font-family: var(--mono);
-      font-size: 12px;
+    .footer-right:hover {
+      color: #fff;
+      transform: translateX(-5px)
+    }
+
+    /* DOC IMAGES */
+    .doc-frame {
+      background: var(--bg-2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      margin-bottom: 12px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .doc-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: .3s
+    }
+
+    .doc-frame:hover img {
+      transform: scale(1.02)
+    }
+
+    .doc-cap {
+      font-size: 13px;
       color: var(--ink-3);
+      text-align: center;
+      font-weight: 500
     }
 
-    .footer-back {
+    /* USER JOURNEY */
+    .uj-container {
+      overflow-x: auto;
+      padding-bottom: 15px;
+      margin: 0 -10px;
+    }
+
+    .uj-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(180px, 1fr));
+      gap: 12px;
+      padding: 0 10px;
+    }
+
+    .uj-phase {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .uj-head {
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 10px;
+    }
+
+    .uj-num {
       font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      text-decoration: none;
+      font-size: 10px;
+      color: var(--coral);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .uj-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f2244;
+    }
+
+    .uj-sec {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .uj-sec-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .uj-item {
+      background: var(--bg);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.5;
+      border-left: 3px solid transparent;
+    }
+
+    .uj-item.tp {
+      border-left-color: var(--amber);
+    }
+
+    .uj-item.pp {
+      background: var(--coral-light);
+      color: var(--coral);
+      border-left-color: var(--coral);
       font-weight: 500;
     }
 
-    .footer-back:hover {
-      text-decoration: underline;
+    .uj-item.gn {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-left-color: var(--teal);
+      font-weight: 500;
     }
 
-    /* RESPONSIVE */
-    @media(max-width:900px) {
+    /* BADGES */
+    .bdg-s {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-family: var(--mono);
+    }
+
+    .bdg-s.win {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    .bdg-s.obs {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    @media (max-width:768px) {
       nav {
-        padding: 0 24px;
+        padding: 0 20px
+      }
+
+      .nav-brand {
+        display: none
       }
 
       .proj-hero {
-        padding: 60px 24px 40px;
+        padding: 60px 24px 40px
       }
 
       .page-body {
-        padding: 40px 24px;
+        padding: 32px 20px
       }
 
-      .overview-grid {
+      .g2 {
+        grid-template-columns: 1fr
+      }
+
+      .g3 {
+        grid-template-columns: 1fr
+      }
+
+      .mod-grid {
+        grid-template-columns: 1fr
+      }
+
+      .imp-grid {
+        grid-template-columns: 1fr
+      }
+
+      .pnav-container {
         grid-template-columns: 1fr;
+        padding: 0 20px
       }
 
-      .ov-box.full {
-        grid-column: span 1;
+      .site-footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 40px 24px
       }
 
-      .challenge-grid {
-        grid-template-columns: 1fr;
+      .rrow {
+        grid-template-columns: 1fr
       }
 
-      .doc-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .role-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .role-key {
-        border-bottom: none !important;
-      }
-
-      footer {
-        padding: 24px;
+      .rk {
+        border-right: none;
+        border-bottom: 1px solid var(--rule)
       }
     }
   </style>
 </head>
 
 <body>
-
   <nav>
-    <a class="nav-back" href="index.html#projects">
+    <a href="index.html#projects" class="nav-back">
       <svg viewBox="0 0 24 24">
         <polyline points="15 18 9 12 15 6" />
       </svg>
       返回作品集
     </a>
     <span class="nav-brand">Jane Chiang</span>
-    <span class="nav-badge">P01 · Social App</span>
+    <span class="nav-badge">P01 · Community App · MarTech</span>
   </nav>
 
+  <!-- HERO -->
   <div class="proj-hero">
     <div class="proj-hero-inner">
-      <div class="proj-hero-eyebrow">P01 · Social Platform · 2C</div>
-      <h1 class="proj-hero-title">社群 App<br><em>Hybrid Mobile Application</em></h1>
-      <p class="proj-hero-sub">主打在地社群互動的 Hybrid App，同時上架 Android 與 iOS，涵蓋快問快答、虛擬幣獎勵、LBS 定位貼文等核心功能。</p>
+      <div class="proj-hero-eyebrow">P01 · Social Network · Gamification</div>
+      <h1 class="proj-hero-title">社群互動App<br><em>Social Platform</em></h1>
+      <p class="proj-hero-sub">以內容牆為核心，整合LBS、匿名聊天、獎勵機制等功能，打造高黏著度的互動平台。
+      </p>
       <div class="meta-row">
         <div class="meta-item">
           <div class="meta-lbl">Platform</div>
-          <div class="meta-val">Android · iOS</div>
+          <div class="meta-val">iOS / Android (Hybrid App)</div>
         </div>
         <div class="meta-item">
           <div class="meta-lbl">My Role</div>
           <div class="meta-val">Product Manager</div>
         </div>
-        <div class="meta-item">
-          <div class="meta-lbl">Architecture</div>
-          <div class="meta-val">WebView + Native</div>
-        </div>
       </div>
       <div class="chips-row">
-        <span class="chip ac">Feed Ranking</span>
-        <span class="chip">A/B Testing</span>
-        <span class="chip">LBS</span>
-        <span class="chip">M幣虛擬貨幣</span>
-        <span class="chip">Anonymous Matching</span>
+        <span class="chip">LBS System</span>
+        <span class="chip teal">B2C</span>
+        <span class="chip">WebView + Native</span>
+        <span class="chip teal">虛擬幣 · M幣生態</span>
+        <span class="chip amber">Roadmap Planning</span>
+        <span class="chip">短影音 · UGC</span>
+        <span class="chip teal">B2B Commerce</span>
       </div>
     </div>
   </div>
@@ -619,159 +1130,592 @@
   <div class="page-body">
     <div class="card">
       <div class="card-head">
-        <span class="card-head-num">01</span>
+        <div class="card-num" style="background:var(--accent)">01</div>
         <span class="card-head-title">專案概述</span>
         <span class="card-head-sub">Project Overview</span>
       </div>
       <div class="card-body">
-        <div class="overview-grid">
-          <div class="ov-box full">
-            <div class="ov-label">背景 Background</div>
-            <p>一款主打在地社群互動的行動應用程式，核心功能圍繞「快問快答（Q&A Story）」與社群貼文，並搭配虛擬幣（M幣）獎勵機制驅動用戶參與。技術架構採 WebView 與原生頁面混合，兼顧跨平台開發效率。</p>
+        <div class="g2">
+          <div class="box ba full">
+            <div class="box-lbl a">專案策略 Project Strategy</div>
+            <p>此產品專案為一款社群互動的行動應用程式，核心功能圍繞「快問快答」與「社群貼文」，並搭配虛擬幣(M幣)獎勵機制驅動用戶參與，結合LBS定位與社交機制，旨在建立高黏著度的生活社群。技術架構採 WebView
+              與原生頁面混合（Hybrid App）。</p>
           </div>
-          <div class="ov-box">
-            <div class="ov-label">核心目標 Goals</div>
-            <ul class="ov-list">
-              <li><span class="ov-bullet">→</span>建立在地社群互動平台，提升 DAU</li>
-              <li><span class="ov-bullet">→</span>透過 M幣獎勵生態驅動 UGC 內容量成長</li>
-              <li><span class="ov-bullet">→</span>設計多帳號角色架構支援 B2C 品牌入駐</li>
+          <div class="box">
+            <div class="box-lbl a">核心目標 Goals</div>
+            <ul class="bl-list">
+              <li><span class="mk a">→</span>建立在地社群互動平台，提升 DAU 與用戶黏著度</li>
+              <li><span class="mk a">→</span>透過 M幣獎勵生態驅動 UGC 內容量成長</li>
+              <li><span class="mk a">→</span>設計多帳號角色架構支援 B2C 品牌進駐，打造多元且平衡的內容生態</li>
+              <li><span class="mk a">→</span>以 LBS 功能強化在地連結感</li>
             </ul>
           </div>
-          <div class="ov-box">
-            <div class="ov-label">技術背景 Tech Context</div>
-            <p>Native 負責效能敏感模組（相機、定位等），WebView 負責內容展示。在開發成本與 UX 流暢度間取捨，體驗一致性為主要挑戰。</p>
+          <div class="box">
+            <div class="box-lbl a">技術選型背景 Tech Decisions</div>
+            <p>考量功能的高頻迭代需求，採用 Hybrid 架構。原生頁面負責效能敏感模組（如相機、定位與轉場等)。此選型在開發成本與功能迭代速度取得平衡。</p>
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="card">
       <div class="card-head">
-        <span class="card-head-num">02</span>
+        <div class="card-num" style="background:var(--teal)">02</div>
         <span class="card-head-title">我的角色與職責</span>
         <span class="card-head-sub">My Role & Responsibilities</span>
       </div>
       <div class="card-body">
-        <div class="role-grid">
-          <div class="role-row">
-            <div class="role-key">功能規格定義</div>
-            <div class="role-val">撰寫各功能模組 PRD，定義 User Story、測試驗收腳本，協調前後端工程對齊規格。</div>
+        <div class="rtable">
+          <div class="rrow">
+            <div class="rk">產品策略與設計</div>
+            <div class="rv">定義從註冊邀請碼、興趣採集到 LBS 互動的核心機制。設計「雙軌內容評分演算法」與「匿名社交成長路徑」，確保內容品質與社交體驗。</div>
           </div>
-          <div class="role-row">
-            <div class="role-key">Roadmap 規劃</div>
-            <div class="role-val">負責 Backlog 優先排序，制定版本 Roadmap，管理 Sprint 計劃與需求變更對排程的衝擊。</div>
+          <div class="rrow">
+            <div class="rk">功能規格與研發管理</div>
+            <div class="rv">主導 PRD 撰寫與 WBS 規劃。針對 Hybrid 架構下的 WebView 與 Native 轉場效能進行技術選型與規格對齊。</div>
           </div>
-          <div class="role-row">
-            <div class="role-key">跨組溝通協調</div>
-            <div class="role-val">同步對接前後端、UI/UX 設計、運營與行銷、業務等團隊，擔任各方溝通橋樑。</div>
+          <div class="rrow">
+            <div class="rk">品牌營運與後台管理支援</div>
+            <div class="rv">開發品牌號排程功能與直播導購模組，並設計後台「權重調整工具」協助營運團隊即時管理熱門牆排序。</div>
           </div>
-          <div class="role-row">
-            <div class="role-key">用戶研究與分析</div>
-            <div class="role-val">彙整In-APP回饋與App Store Review，與 UX共同研究回饋與痛點，並依照頻率與嚴重度進行優先排序、提出改善方案，驅動功能迭代。</div>
+          <div class="rrow">
+            <div class="rk">數據迭代優化</div>
+            <div class="rv">分析用戶反饋與 DAU/留存數據、建立 A/B Testing 實驗追蹤 UI/UX 改版成效。</div>
           </div>
-          <div class="role-row">
-            <div class="role-key">A/B Testing 執行</div>
-            <div class="role-val">建立 A/B Testing 實驗，定義實驗對象、實驗組與對照組，並追蹤實驗數據，進行實驗結果分析，提出改善方案，驅動功能迭代。</div>
-          </div>
-          <div class="role-row">
-            <div class="role-key">行銷活動聯動</div>
-            <div class="role-val">結合七夕行銷活動需求，定義匿名配對聊天功能規格，協調產品與行銷團隊的時程對齊與資源分配。</div>
+          <div class="rrow">
+            <div class="rk">跨端體驗規格定義</div>
+            <div class="rv">針對 Hybrid 架構中多媒體發文流程（相簿選取 Native、影片上傳涉及 WebView 與 Native
+              頁面交接、草稿跨端同步），定義各環節的互動規格與驗收標準，協調前後端對齊，確保三種內容格式在頁面交錯切換時體驗一致流暢。</div>
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="card">
       <div class="card-head">
-        <span class="card-head-num">03</span>
-        <span class="card-head-title">文件展示</span>
-        <span class="card-head-sub">流程圖 · 規格文件 · Wireframe</span>
+        <div class="card-num" style="background:var(--coral)">03</div>
+        <span class="card-head-title">用戶旅程</span>
+        <span class="card-head-sub">User Journey</span>
       </div>
       <div class="card-body">
-        <div class="doc-grid">
-          <div>
-            <div class="doc-frame">
-              <div class="doc-placeholder">
-                <div class="doc-placeholder-icon">📊</div>
-                <div class="doc-placeholder-lbl">流程圖上傳區</div>
+        <div class="uj-container">
+          <div class="uj-grid">
+            <div class="uj-phase">
+              <div class="uj-head">
+                <div class="uj-num">第1步</div>
+                <div class="uj-title">發現 · 下載</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Touchpoints</div>
+                <div class="uj-item tp">Landing Page (UA 偵測)</div>
+                <div class="uj-item tp">App Store / Google Play</div>
+                <div class="uj-item tp">好友推薦碼分享</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Pain Point</div>
+                <div class="uj-item pp">用戶不清楚 App 核心價值</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Gain</div>
+                <div class="uj-item gn">推薦碼集點活動提升下載動機</div>
               </div>
             </div>
-            <div class="doc-caption">用戶註冊 Flow</div>
-          </div>
-          <div>
-            <div class="doc-frame">
-              <div class="doc-placeholder">
-                <div class="doc-placeholder-icon">📄</div>
-                <div class="doc-placeholder-lbl">規格文件擷圖</div>
+            <div class="uj-phase">
+              <div class="uj-head">
+                <div class="uj-num">第2步</div>
+                <div class="uj-title">註冊 · 驗證</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Touchpoints</div>
+                <div class="uj-item tp">手機號碼輸入</div>
+                <div class="uj-item tp">簡訊驗證</div>
+                <div class="uj-item tp">推薦碼</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Pain Point</div>
+                <div class="uj-item pp">OTP 等待時間造成流失</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Gain</div>
+                <div class="uj-item gn">推薦碼即時兌換，強化完成動機</div>
               </div>
             </div>
-            <div class="doc-caption">Q&A Story PRD</div>
-          </div>
-          <div>
-            <div class="doc-frame">
-              <div class="doc-placeholder">
-                <div class="doc-placeholder-icon">📐</div>
-                <div class="doc-placeholder-lbl">Wireframe 擷圖</div>
+            <div class="uj-phase">
+              <div class="uj-head">
+                <div class="uj-num">第3步</div>
+                <div class="uj-title">Onboarding</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Touchpoints</div>
+                <div class="uj-item tp">興趣標籤選擇</div>
+                <div class="uj-item tp">功能引導教學</div>
+                <div class="uj-item tp">首次瀏覽 Feed</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Pain Point</div>
+                <div class="uj-item pp">個人化推播尚未上線，精準度不足</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Gain</div>
+                <div class="uj-item gn">Feed Ranking（人工+自動評分），確認內容品質。</div>
               </div>
             </div>
-            <div class="doc-caption">首頁 Feed Wireframe</div>
+            <div class="uj-phase">
+              <div class="uj-head">
+                <div class="uj-num">第4步</div>
+                <div class="uj-title">首次互動</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Touchpoints</div>
+                <div class="uj-item tp">瀏覽Q&A/貼文/短影音</div>
+                <div class="uj-item tp">愛心/留言/分享互動</div>
+                <div class="uj-item tp">LBS附近貼文</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Pain Point</div>
+                <div class="uj-item pp">WebView/Native頁面切換不順暢</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Gain</div>
+                <div class="uj-item gn">M幣獎勵即時回饋，強化參與感</div>
+              </div>
+            </div>
+            <div class="uj-phase">
+              <div class="uj-head">
+                <div class="uj-num">第5步</div>
+                <div class="uj-title">持續回訪</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Touchpoints</div>
+                <div class="uj-item tp">每日任務</div>
+                <div class="uj-item tp">個人化推播</div>
+                <div class="uj-item tp">行銷活動(如七夕匿名配對)</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Pain Point</div>
+                <div class="uj-item pp">通知疲乏導致點擊率下降</div>
+              </div>
+              <div class="uj-sec">
+                <div class="uj-sec-lbl">Gain</div>
+                <div class="uj-item gn">連續獎勵機制</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="doc-note">💡 將 .doc-placeholder 替換為 &lt;img src="..."&gt; 以展示實際圖片。</div>
       </div>
     </div>
 
+
     <div class="card">
       <div class="card-head">
-        <span class="card-head-num">04</span>
+        <div class="card-num" style="background:var(--amber)">04</div>
+        <span class="card-head-title">核心產品亮點與策略</span>
+        <span class="card-head-sub">Feature Highlights & Product Strategy</span>
+      </div>
+      <div class="card-body">
+        <div class="mod-grid">
+          <!-- 亮點 1: 虛擬幣機制 -->
+          <div class="mod">
+            <div class="mod-hd co">
+              <div class="mod-icon mi-co">💰</div>
+              <div>
+                <div class="mod-title">M 幣互動與遊戲化獎勵</div>
+                <div class="mod-sub">Gamified Q&A Loop</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd co"></span><b>互動回饋：</b>設計 IG 式「快問快答」，透過網友解答與提問者評選建立互動閉環。</li>
+                <li><span class="fd co"></span><b>虛擬幣生態：</b>「提問、獲選解答、完成核銷任務」皆可獲 M 幣，驅動站內高強度的互動率。</li>
+                <li><span class="fd co"></span><b>經濟閉環：</b>M 幣連結任務系統，引導用戶完成指定動作或店家核銷。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 亮點 2: LBS 精準探索 -->
+          <div class="mod">
+            <div class="mod-hd b">
+              <div class="mod-icon mi-b">📍</div>
+              <div>
+                <div class="mod-title">LBS 附近探索牆</div>
+                <div class="mod-sub">Hyper-Local Discovery Feed</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd a"></span><b>300m 精準距離：</b>即時過濾極近距離貼文，強化社群內容的「現時感」與連結度。</li>
+                <li><span class="fd a"></span><b>多維度搜尋索引：</b>整合帳號、地標、Tag 與品牌號的複合搜尋架構，提升內容索引效率。</li>
+                <li><span class="fd a"></span><b>商業導流：</b>貼文標記實體店家位置，縮短用戶從線上發現到實體到店的轉化路徑。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 亮點 3: 演算法排序 -->
+          <div class="mod">
+            <div class="mod-hd am">
+              <div class="mod-icon mi-am">⚖️</div>
+              <div>
+                <div class="mod-title">雙軌內容評分演算法</div>
+                <div class="mod-sub">Hybrid Content Scoring</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd am"></span><b>自動化預篩：</b>系統根據圖片質量與文字深度預設基礎權重，確保 Feed 流初步視覺品質。</li>
+                <li><span class="fd am"></span><b>人工運營加權：</b>小編帳號擁有對特定優質內容手動評分權限，確保站內重點活動最大曝光。</li>
+                <li><span class="fd am"></span><b>動態權重管理：</b>透過 Multiplier 機制即時調整排序，靈活應對運營導向的內容推播。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 亮點 4: 節慶匿名社交 -->
+          <div class="mod">
+            <div class="mod-hd v">
+              <div class="mod-icon mi-v">🎭</div>
+              <div>
+                <div class="mod-title">行銷連動匿名社交聊天</div>
+                <div class="mod-sub">Event-Driven Progression Chat</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd v"></span><b>期間限定節慶入口：</b>為七夕特定活動打造專屬匿名互動區，增加期間限定話題熱度。</li>
+                <li><span class="fd v"></span><b>對話觸發好友：</b>首創「互動量解鎖機制」，對話達標後才可解鎖頭像與資料，降低社交壓力。</li>
+                <li><span class="fd v"></span><b>破冰任務設計：</b>預設話題引導與互動任務，有效降低新用戶在匿名場景的冷場率。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 亮點 5: 創作者工具鏈 -->
+          <div class="mod">
+            <div class="mod-hd t">
+              <div class="mod-icon mi-t">✏️</div>
+              <div>
+                <div class="mod-title">創作者工具鏈設計</div>
+                <div class="mod-sub">Creator Toolchain UX</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd t"></span><b>多格式發文：</b>同一入口支援快問快答、一般貼文、短影音三種格式，並可指定短影音封面圖，兼顧靈活性與展示品質。</li>
+                <li><span class="fd t"></span><b>草稿暫存機制：</b>支援未完成內容儲存為草稿、擇日發布，降低創作中斷的摩擦，有效提升 UGC 的發布完成率。</li>
+                <li><span class="fd t"></span><b>降低創作門檻：</b>規劃濾鏡功能與發文模板，並整合 IG 貼文一鍵匯入，解決新用戶初期的內容冷啟動困境。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 亮點 6: 商業生態入口設計 -->
+          <div class="mod">
+            <div class="mod-hd b">
+              <div class="mod-icon mi-b">🛍️</div>
+              <div>
+                <div class="mod-title">商業生態入口的前瞻佈局</div>
+                <div class="mod-sub">Commerce Ecosystem Architecture</div>
+              </div>
+            </div>
+            <div class="mod-bd">
+              <ul class="fl">
+                <li><span class="fd a"></span><b>精選品牌頁籤：</b>Feed 新增「精選」頁籤作為品牌合作與編輯推薦的專屬曝光位，區隔 UGC 流量並提升廣告庫存價值。</li>
+                <li><span class="fd a"></span><b>產品連結預埋：</b>Q&A、貼文、短影音、直播皆可掛載商品圖示與連結，為未來電商導流預先建立入口，無需大幅重構架構。</li>
+                <li><span class="fd a"></span><b>商業化無痛擴充：</b>透過功能預埋策略，確保平台在 UGC 成長期即同步完成變現路徑的技術奠基，大幅降低未來商業化的改裝成本。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 補充：多角權限與 B2B 功能 -->
+        <div class="box ba" style="margin-top: 24px;">
+          <div class="box-lbl a">B2C2C 用戶權限與增長架構 Architecture &amp; Growth</div>
+          <div class="g3">
+            <div class="box-item">
+              <div class="bdg b">一般用戶</div>
+              <p style="font-size:13px; margin-top:8px; line-height:1.5;"><b>增長引擎：</b>好友邀請碼推薦獎勵與註冊行為追蹤。支援 IG
+                貼文匯入功能，快速充實創作者內容。</p>
+            </div>
+            <div class="box-item">
+              <div class="bdg am">品牌/店家帳號</div>
+              <p style="font-size:13px; margin-top:8px; line-height:1.5;"><b>企業賦能：</b>支援貼文排程發布與直播即時購貨，地標標註驅動到店。</p>
+            </div>
+            <div class="box-item">
+              <div class="bdg bdg-r">內部小編號</div>
+              <p style="font-size:13px; margin-top:8px; line-height:1.5;"><b>平台運營：</b>擁有內容審核與手動調分權限，擔任維護社區生態品質的關鍵角色。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--violet)">05</div>
+        <span class="card-head-title">匿名社交「階梯式路徑」設計</span>
+        <span class="card-head-sub">Anonymous Social Progression Path</span>
+      </div>
+      <div class="card-body" style="padding-top: 32px;">
+        <p style="font-size:14.5px;color:var(--ink-2);margin-bottom:36px;line-height:1.8; max-width: 800px;">
+          為降低陌生人社交的初期壓力與挫折感，設計了「先互動、後揭露」的階梯式路徑。用戶可選擇感興趣話題進入聊天室，並透過達成對話里程碑逐步解鎖對方資訊，將「獲取新好友」轉化為一種具成就感的遊戲化流程。
+        </p>
+        <div class="flow" style="padding-bottom: 20px;">
+          <div class="fstep">
+            <div class="fcircle fc-a">1</div>
+            <div class="flbl">話題配對</div>
+            <div class="fsub">選擇感興趣話題進入<br>此時頭像與資料全匿名</div>
+          </div>
+          <div class="farrow">›</div>
+          <div class="fstep">
+            <div class="fcircle fc-t">2</div>
+            <div class="flbl">破冰任務</div>
+            <div class="fsub">觸發系统預設話題引導<br>達成指定對話里程碑</div>
+          </div>
+          <div class="farrow">›</div>
+          <div class="fstep">
+            <div class="fcircle fc-am">3</div>
+            <div class="flbl">局部解鎖</div>
+            <div class="fsub">互動達標，系統自動解鎖<br>對方頭像與特色標籤</div>
+          </div>
+          <div class="farrow">›</div>
+          <div class="fstep">
+            <div class="fcircle fc-t">4</div>
+            <div class="flbl">發起關注</div>
+            <div class="fsub">建立初步信任後<br>正式開放「加好友」申請</div>
+          </div>
+          <div class="farrow">›</div>
+          <div class="fstep">
+            <div class="fcircle fc-co">5</div>
+            <div class="flbl">完整社交</div>
+            <div class="fsub">成為好友，解鎖所有資訊<br>並導入長期私訊模組</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--teal)">06</div>
+        <span class="card-head-title">數據驅動 A/B Test 實驗記錄</span>
+        <span class="card-head-sub">A/B Testing Experiments</span>
+      </div>
+      <div class="card-body">
+        <table class="ptable" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>A/B Test 項目</th>
+              <th>測試假設</th>
+              <th>結果指標</th>
+              <th>決策</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Onboarding 流程</td>
+              <td>縮短邀請碼輸入步驟數可提升完成率</td>
+              <td>完成註冊率<span class="fm">+15%</span></td>
+              <td><span class="bdg-s obs">上線</span></td>
+            </tr>
+            <tr>
+              <td>M幣簽到卡獎勵介面</td>
+              <td>視覺強化簽到卡可提升回訪</td>
+              <td>7天連續簽到率<span class="fm">+8%</span></td>
+              <td><span class="bdg-s obs">上線</span></td>
+            </tr>
+            <tr>
+              <td>Feed 排序權重調整</td>
+              <td>提高互動率貼文權重可延長停留FEED時間</td>
+              <td>停留時間<span class="fm">+12%</span></td>
+              <td><span class="bdg-s win">持續觀測</span></td>
+            </tr>
+            <tr>
+              <td>Q&A卡片呈現方式</td>
+              <td>有最佳解答 vs 僅問題</td>
+              <td>有最佳解答點擊率>僅問題</td>
+              <td><span class="bdg-s obs">上線</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--coral)">07</div>
         <span class="card-head-title">挑戰與學習</span>
         <span class="card-head-sub">Challenges & Key Learnings</span>
       </div>
       <div class="card-body">
-        <div class="challenge-grid">
-          <div class="challenge-box">
-            <div class="ch-icon">⚙️</div>
-            <div class="ch-title">Hybrid App 架構取捨</div>
-            <div class="ch-text">WebView 切換影響轉場體驗，需持續在開發成本與 UX 之間進行協商。</div>
-            <div class="ch-learn">→ 學習技術選型對體驗決策的影響</div>
+        <div class="g3">
+          <div class="box">
+            <div class="box-lbl t" style="color:var(--ink);">Hybrid App 架構取捨</div>
+            <div class="rv" style="color:var(--ink);">WebView 與原生頁面切換造成轉場體驗不一致，規格階段需在開發成本與 UX 流暢度之間持續協商，尤其在 Q&A Story
+              等體驗敏感模組上張力最大。</div>
+            <div class="chip" style="color:var(--ink); font-weight:500">→ 技術選型影響規格決策的認知</div>
           </div>
-          <div class="challenge-box">
-            <div class="ch-icon">🔬</div>
-            <div class="ch-title">功能分階落地</div>
-            <div class="ch-text">推播演算法未能及時上線，後續使用評分作為 Fallback 方案。</div>
-            <div class="ch-learn">→ 強化 MVP 優先思維</div>
+          <div class="box">
+            <div class="box-lbl t" style="color:var(--ink);">個人化推播分階落地</div>
+            <div class="rv" style="color:var(--ink);">個人化標籤資料雖然在 Onboarding 時已建立，但個人化推播演算法於任期內未能上線。以 Feed Ranking（人工 +
+              自動評分）作為 Fallback 方案，確保冷啟動期內容品質。</div>
+            <div class="chip" style="color:var(--ink); font-weight:500">→ 實踐MVP思維與功能分階交付策略</div>
           </div>
-          <div class="challenge-box">
-            <div class="ch-icon">🤝</div>
-            <div class="ch-title">利害關係人對齊</div>
-            <div class="ch-text">同步對接四個團隊，需要在緊縮的時程下保持一致的規格認知。</div>
-            <div class="ch-learn">→ 建立高效溝通節奏</div>
+          <div class="box">
+            <div class="box-lbl t" style="color:var(--ink);">多利害關係人規格對齊</div>
+            <div class="rv" style="color:var(--ink);">同步對接前後端工程、UI/UX 設計、運營與業務四個團隊，需維持規格一致性並管理需求變更對 Sprint
+              排程的衝擊，尤其在七夕行銷活動時程壓縮下挑戰最大。</div>
+            <div class="chip" style="color:var(--ink); font-weight:500">→ 建立跨單位規格溝通節奏，減少後期需求衝突</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="proj-nav">
-      <a class="proj-nav-link" href="index.html#projects">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num" style="background:linear-gradient(135deg,var(--teal),var(--accent))">08</div>
+        <span class="card-head-title">成果與產品價值</span>
+        <span class="card-head-sub">Impact & Business Value</span>
+      </div>
+      <div class="card-body">
+        <!-- 
+        <div class="imp-grid" style="margin-bottom:24px">
+          <div class="imp-card b">
+            <div class="imp-stat a">90<span class="imp-unit">%</span></div>
+            <div class="imp-lbl">初期首頁內容合規率</div>
+            <div class="imp-sub">Content Compliance</div>
+          </div>
+          <div class="imp-card t">
+            <div class="imp-stat t">48<span class="imp-unit">%</span></div>
+            <div class="imp-lbl">快問快答互動轉化率</div>
+            <div class="imp-sub">Interactive Conversion</div>
+          </div>
+          <div class="imp-card am">
+            <div class="imp-stat am">4.8<span class="imp-unit">★</span></div>
+            <div class="imp-lbl">App Store 用戶評分</div>
+            <div class="imp-sub">User Satisfaction</div>
+          </div>
+        </div>
+        -->
+        <div class="g2">
+          <div class="box ba">
+            <div class="box-lbl a">產品機制價值</div>
+            <ul class="bl-list">
+              <li><span class="mk a">📈</span><b>內容冷啟動：</b>透過 IG 導入與手動調分機制，解決初期內容稀缺問題，穩定 Feed 流質量。</li>
+              <li><span class="mk a">📈</span><b>點數經濟建立：</b>M 幣虛擬獎勵有效拉長用戶日平均使用時數（Session Duration）。</li>
+              <li><span class="mk a">📈</span><b>商業生態奠基：</b>透過精選頁籤 + 所有內容格式預設產品連結入口，在 UGC
+                成長期即同步完成變現路徑的技術佈局，確保未來導入電商無需重構核心架構。</li>
+            </ul>
+          </div>
+          <div class="box bt">
+            <div class="box-lbl t">運營效率價值</div>
+            <ul class="bl-list">
+              <li><span class="mk t">✓</span><b>後台賦能：</b>透過權重調整介面，讓運營團隊在無技術介入下即可靈活控制活動曝光。</li>
+              <li><span class="mk t">✓</span><b>數據標籤化：</b>註冊階段的興趣選擇數據，成為後續精準行銷與推送推廣的核心基礎。</li>
+              <li><span class="mk t">✓</span><b>O2O 閉環：</b>健全的任務核銷流程，為品牌商提供可量化的實體到店轉換數據。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num" style="background:var(--ink-3)">09</div>
+        <span class="card-head-title">文件展示</span>
+        <span class="card-head-sub">Gallery</span>
+      </div>
+      <div class="card-body">
+        <div class="g3">
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/登入wireframe.png" alt="登入wireframe">
+            </div>
+            <div class="doc-cap">登入流程 Wireframe</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/匿名聊天室流程.png" alt="匿名聊天室流程">
+            </div>
+            <div class="doc-cap">匿名聊天室互動流程圖</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/聊天室總覽.jpg" alt="聊天室總覽">
+            </div>
+            <div class="doc-cap">聊天室總覽介面</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/破冰月老視窗_3.jpg" alt="互動遊戲介面">
+            </div>
+            <div class="doc-cap">月老破冰互動介面</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/(對方視角)匿名聊天室-被邀請關注alert.png" alt="邀請關注提示">
+            </div>
+            <div class="doc-cap">邀請關注提示</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/已關注對方.png" alt="關注介面">
+            </div>
+            <div class="doc-cap">好友關注成功介面</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/興趣標籤.png" alt="興趣標籤">
+            </div>
+            <div class="doc-cap">興趣標籤介面</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/Feed-Overview.jpg" alt="FEED首頁介面">
+            </div>
+            <div class="doc-cap">FEED首頁介面</div>
+          </div>
+          <div>
+            <div class="doc-frame">
+              <img src="images/1/MP完成簽到.png" alt="MP完成簽到">
+            </div>
+            <div class="doc-cap">MP完成簽到pop up</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.page-body -->
+
+  <div class="pnav-container">
+    <a class="pnav-card" href="project-09.html">
+      <div class="pnav-icon">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="15 18 9 12 15 6" />
         </svg>
-        <div><span class="proj-nav-label">Back to Portfolio</span>返回作品集</div>
-      </a>
-      <a class="proj-nav-link" href="project-template.html" target="_blank" style="text-align:right">
-        <div><span class="proj-nav-label">下一個專案</span>Template 預覽</div>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      </div>
+      <div class="pnav-content">
+        <div class="pnav-subtitle">PREVIOUS PROJECT</div>
+        <div class="pnav-title">連鎖餐飲品牌官網建置</div>
+      </div>
+    </a>
+    <a class="pnav-card" href="project-02.html">
+      <div class="pnav-content" style="text-align: right;">
+        <div class="pnav-subtitle">NEXT PROJECT</div>
+        <div class="pnav-title">票券行銷互動模組</div>
+      </div>
+      <div class="pnav-icon">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="9 18 15 12 9 6" />
         </svg>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
 
-      <footer>
-        <div class="footer-copy">© 2024 Jane Chiang Portfolio</div>
-        <a class="footer-back" href="index.html#projects" style="color:var(--accent); font-family:var(--mono); font-size:12px; text-decoration:none;">← 返回作品集 Back to Portfolio</a>
-    </footer>
-
+  <footer class="site-footer">
+    <div class="footer-left">© 2026 Jane Chiang Portfolio</div>
+    <a class="footer-right" href="index.html#projects">← 返回作品集 Back to Portfolio</a>
+  </footer>
 </body>
 
 </html>

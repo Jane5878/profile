@@ -68,7 +68,7 @@
       top: 0;
       left: 0;
       bottom: 0;
-      width: 280px;
+      width: 300px;
       transition: all ease-in-out 0.5s;
       z-index: 9997;
       padding: 40px 20px;
@@ -360,7 +360,9 @@
       background: var(--white);
     }
 
-    .projects-grid { gap: 20px; }
+    .projects-grid {
+      gap: 20px;
+    }
 
     .projects-grid {
       display: grid;
@@ -593,18 +595,138 @@
       color: #fff;
     }
 
-    /* Responsive */
+    /* Contact Section */
+    .contact {
+      padding: 60px 0;
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .btn-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(20, 157, 221, 0.3);
+    }
+
+    .btn-email:hover {
+      background: var(--accent-2);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(20, 157, 221, 0.4);
+    }
+
+    /* ---- MOBILE TOP BAR ---- */
+    .mobile-top-bar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: linear-gradient(90deg, #0f2244 0%, #0d3b6b 100%);
+      z-index: 9999;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mtb-brand {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mtb-brand em {
+      font-style: normal;
+      font-size: 11px;
+      opacity: 0.45;
+      font-family: var(--mono);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+
+    .mtb-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .mtb-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ---- PORTFOLIO FOOTER ---- */
+    .portfolio-footer {
+      background: #0f2244;
+      color: rgba(255, 255, 255, 0.35);
+      padding: 22px 40px 22px 340px;
+      /* Offset for sidebar desktop */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-family: var(--mono);
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .portfolio-footer a {
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .portfolio-footer a:hover {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Responsive Queries - MUST BE AT THE END */
     @media (max-width: 1199px) {
       #header {
-        left: -300px;
+        left: -320px;
       }
 
       #main {
         margin-left: 0;
+        padding-top: 56px;
+      }
+
+      .mobile-top-bar {
+        display: flex !important;
+        /* Force display in media query */
       }
 
       .mobile-nav-toggle {
-        display: flex;
+        display: none;
+      }
+
+      .portfolio-footer {
+        padding: 22px 24px;
+        justify-content: center;
+        text-align: center;
       }
     }
 
@@ -661,34 +783,12 @@
       section {
         padding: 50px 20px;
       }
-    }
 
-    /* Contact Section */
-    .contact {
-      padding: 60px 0;
-      background: var(--bg);
-      text-align: center;
-    }
-
-    .btn-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 16px 40px;
-      background: var(--accent);
-      color: var(--white);
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 18px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(20, 157, 221, 0.3);
-    }
-
-    .btn-email:hover {
-      background: var(--accent-2);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(20, 157, 221, 0.4);
+      .portfolio-footer {
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 4px;
+      }
     }
 
     @media (max-width: 576px) {
@@ -705,9 +805,18 @@
 
 <body>
 
-  <!-- Mobile Toggle -->
-  <button type="button" class="mobile-nav-toggle"
-    onclick="document.body.classList.toggle('mobile-nav-active')">☰</button>
+  <!-- Mobile Top Bar -->
+  <div class="mobile-top-bar">
+    <div class="mtb-brand">江翊蓁 Jane<em>PM · Portfolio</em></div>
+    <button class="mtb-toggle" type="button" onclick="document.body.classList.toggle('mobile-nav-active')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+    </button>
+  </div>
 
   <!-- Header / Sidebar -->
   <header id="header">
@@ -741,21 +850,21 @@
           <h2 class="mobile-name">江翊蓁 Jane</h2>
           <h3>Product & Project Manager</h3>
           <p class="desc">
-            擁有 6+ 年 PM 經歷，橫跨社群 App、MarTech 數位行銷、電商 B2B 平台及聚合交通碼 App。善於從 0 到 1 建立產品模組，以數據驅動迭代與跨組協作為核心工作方法。
+            擁有 6+ 年跨產業PM經驗，領域涵蓋社群App、MarTech數位行銷、電商B2B平台及MaaS APP。擅長主導從0到1的模組化開發，並以系統性思維優化開發流程。
           </p>
 
           <div class="stats-grid">
             <div class="stat-box"><span class="val">6+</span><span class="lbl">年 PM 經歷</span></div>
-            <div class="stat-box"><span class="val">10+</span><span class="lbl">企業客戶</span></div>
+            <div class="stat-box"><span class="val">20+</span><span class="lbl">企業專案</span></div>
             <div class="stat-box"><span class="val">60%+</span><span class="lbl">客戶續約率</span></div>
           </div>
 
           <ul class="about-list">
-            <li><span class="num">01</span>6 年產品及專案管理經驗，涵蓋社群平台、Martech、電子商務等領域。</li>
-            <li><span class="num">02</span>成功策劃從 0 到 1 的產品模組，同時管理 10+ 知名企業客戶的 SaaS 產品與客製化專案，續約率超過 60%。</li>
-            <li><span class="num">03</span>曾負責 2B / 2C 產品線，運用 Scrum 開發週期推動產品迭代。</li>
-            <li><span class="num">04</span>各文件產出（PRD / WBS / Wireframe / Prototype 等）、項目排程及專案推動。</li>
-            <li><span class="num">05</span>善用業餘時間參加 UX 線上課程與線下工作坊，持續精進產品與用戶體驗思維。</li>
+            <li><span class="num">01</span>曾負責 2B SaaS 及 2C 產品線，熟悉產品生命週期管理。</li>
+            <li><span class="num">02</span>具備從 0 到 1 策劃產品核心模組的能力，並能根據數據反饋進行 A/B Testing 迭代。</li>
+            <li><span class="num">03</span>管理 20+ 企業客製化專案，有效協調業務需求與技術實作，維持高客戶黏著度。</li>
+            <li><span class="num">04</span>負責各類文件產出 PRD、Wireframe、WBS 與 Prototype，確保開發規格無歧義。</li>
+            <li><span class="num">05</span>具備 UX 思維與用戶中心設計理念，能從用戶旅程中識別痛點並轉化為功能需求。</li>
           </ul>
 
           <div class="tags">
@@ -763,23 +872,9 @@
             <span class="tag">Scrum / Agile</span>
             <span class="tag">PRD · WBS</span>
             <span class="tag">Wireframe</span>
+            <span class="tag">Roadmap Planning</span>
+            <span class="tag">User Research</span>
             <span class="tag">A/B Testing</span>
-            <span class="tag">MarTech</span>
-            <span class="tag">SaaS</span>
-          </div>
-
-          <div class="skills-wrapper">
-            <h4>Core Skills</h4>
-            <div class="skills-grid">
-              <div class="skill-item">Roadmap Planning</div>
-              <div class="skill-item">Backlog Grooming</div>
-              <div class="skill-item">User Research</div>
-              <div class="skill-item">A/B Testing</div>
-              <div class="skill-item">Data Analysis</div>
-              <div class="skill-item">Figma · Prototype</div>
-              <div class="skill-item">Scrum / Agile</div>
-              <div class="skill-item">Stakeholder Mgmt</div>
-            </div>
           </div>
         </div>
         <img src="images/Jane.jpg" alt="Jane Chiang" class="about-img"
@@ -800,38 +895,38 @@
               class="project-badge">2C</span></div>
           <div class="project-body">
             <div class="project-domain">Social APP</div>
-            <div class="project-name">社群 App</div>
-            <div class="project-desc">主打在地社群互動的行動應用程式，涉及 A/B 測試、新用戶引導及匿名配對功能開發。</div>
+            <div class="project-name">社群互動App</div>
+            <div class="project-desc">核心功能圍繞「快問快答」與「貼文」，並搭配虛擬幣獎勵機制驅動用戶參與，結合LBS定位與社交等機制，旨在建立高黏著度的生活社群。</div>
             <div class="project-tags">
-              <span>Social APP</span><span>Growth</span><span>Hybrid App</span>
+              <span>UGC</span><span>Hybrid App</span><span>UX</span>
             </div>
           </div>
         </a>
 
         <!-- P02 -->
         <a class="project-card" href="project-02.html" target="_blank">
-          <div class="project-thumb"><img src="images/p02_thumb.png" alt="Coupon Module"><span
-              class="project-badge">2B</span></div>
+          <div class="project-thumb"><img src="images/p02_thumb.png" alt="Coupon Module"><span class="project-badge">2B
+              SaaS</span></div>
           <div class="project-body">
-            <div class="project-domain">MarTech</div>
-            <div class="project-name">票券行銷模組</div>
-            <div class="project-desc">設計互動行銷模組，解決品牌會員擴增緩慢問題，改版品牌網站銷售增長 20%。</div>
+            <div class="project-domain">MarTech / Growth</div>
+            <div class="project-name">票券行銷互動模組</div>
+            <div class="project-desc">設計模組化互動工具，提供品牌彈性配置活動頁面，有效帶動會員成長並搜整客戶輪廓。</div>
             <div class="project-tags">
-              <span>B2B SaaS</span><span>OMO</span>
+              <span>B2B SaaS</span><span>Interaction Design</span><span>Data Collection</span>
             </div>
           </div>
         </a>
 
         <!-- P03 -->
         <a class="project-card" href="project-03.html" target="_blank">
-          <div class="project-thumb"><img src="images/p03_thumb.png" alt="OMO Marketing"><span
-              class="project-badge">2B</span></div>
+          <div class="project-thumb"><img src="images/p03_thumb.png" alt="OMO Marketing"><span class="project-badge">OMO
+              Strategy</span></div>
           <div class="project-body">
-            <div class="project-domain">MarTech</div>
+            <div class="project-domain">MarTech / OMO</div>
             <div class="project-name">婦幼品牌整合行銷平台</div>
-            <div class="project-desc">結合 LINE 與 OMO 策略，打造自動化領券與問券追蹤系統。</div>
+            <div class="project-desc">藉由各渠道或匯入會員名單，於LINE OA發放優惠券，進而透過問卷蒐集用戶資料、優惠券兌換紀錄等，實現多渠道導流與用戶數據彙整。</div>
             <div class="project-tags">
-              <span>OMO</span><span>MarTech</span>
+              <span>OMO</span><span>CRM</span><span>LINE OA</span>
             </div>
           </div>
         </a>
@@ -839,13 +934,13 @@
         <!-- P04 -->
         <a class="project-card" href="project-04.html" target="_blank">
           <div class="project-thumb"><img src="images/p04_thumb.png" alt="Smart Mobility"><span
-              class="project-badge">2C</span></div>
+              class="project-badge">MaaS</span></div>
           <div class="project-body">
-            <div class="project-domain">MaaS</div>
-            <div class="project-name">聚合交通碼 App</div>
-            <div class="project-desc">整合捷運、公車與第三方支付，推廣綠色交通紀錄並優化 2C 支付流程。</div>
+            <div class="project-domain">MaaS / App</div>
+            <div class="project-name">聚合交通碼APP</div>
+            <div class="project-desc">整合捷運、公車等多項運具之金流串接功能，實現跨運具預訂與一站式交通支付體驗。</div>
             <div class="project-tags">
-              <span>MaaS</span><span>FinTech</span>
+              <span>MaaS</span><span>Payment</span><span>UX</span>
             </div>
           </div>
         </a>
@@ -853,13 +948,13 @@
         <!-- P05 -->
         <a class="project-card" href="project-05.html" target="_blank">
           <div class="project-thumb"><img src="images/p05_thumb.png" alt="B2B E-commerce"><span
-              class="project-badge">2B</span></div>
+              class="project-badge">E-commerce</span></div>
           <div class="project-body">
-            <div class="project-domain">E-Commerce</div>
-            <div class="project-name">電商 B2B 平台</div>
-            <div class="project-desc">規劃 2B 產品策略與 Roadmap，優化商品、訂單、憑證核銷核心後台功能。</div>
+            <div class="project-domain">B2B SaaS / ERP</div>
+            <div class="project-name">商家管理系統</div>
+            <div class="project-desc">主導 B2B SaaS 迭代，整合訂單、商品及帳務自動化對帳系統，有效降低 50% 人工作業成本。</div>
             <div class="project-tags">
-              <span>B2B</span><span>Strategy</span>
+              <span>B2B SaaS</span><span>Accounting Automation</span><span>ERP Logic</span>
             </div>
           </div>
         </a>
@@ -867,41 +962,41 @@
         <!-- P06 -->
         <a class="project-card" href="project-06.html" target="_blank">
           <div class="project-thumb"><img src="images/p06_thumb.png" alt="Internal Dispatch"><span
-              class="project-badge">Workflow</span></div>
+              class="project-badge">Enterprise</span></div>
           <div class="project-body">
-            <div class="project-domain">Enterprise ERP</div>
-            <div class="project-name">企業內部派單系統</div>
-            <div class="project-desc">將繁複紙本工單數位化，建立主管審核與工班執行的一條龍派發機制。</div>
+            <div class="project-domain">Enterprise Workflow</div>
+            <div class="project-name">智慧派單系統</div>
+            <div class="project-desc">數位化繁複紙本工單，整合瀏覽歷程與活動紀錄，實現智慧化人員調度與流程自動化。</div>
             <div class="project-tags">
-              <span>Workflow</span><span>ERP</span>
+              <span>Workflow Digitization</span><span>Digital Transformation</span><span>Backstage ERP</span>
             </div>
           </div>
         </a>
 
         <!-- P07 -->
         <a class="project-card" href="project-07.html" target="_blank">
-          <div class="project-thumb"><img src="images/p07_thumb.png" alt="OCR Invoice"><span
-              class="project-badge">AI</span></div>
+          <div class="project-thumb"><img src="images/p07_thumb.png" alt="OCR Invoice"><span class="project-badge">AI
+              Solutions</span></div>
           <div class="project-body">
-            <div class="project-domain">MarTech / AI</div>
-            <div class="project-name">OCR 發票登錄平台</div>
-            <div class="project-desc">整合 AI OCR 辨識技術，優化活動登錄體驗並掌握精準消費大數據。</div>
+            <div class="project-domain">MarTech</div>
+            <div class="project-name">OCR 發票登錄行銷平台</div>
+            <div class="project-desc">導入OCR技術，開發高速辨識、即時審核的發票登錄模組，助力品牌在行銷活動中精準蒐集消費大數據。</div>
             <div class="project-tags">
-              <span>Campaign</span><span>OCR</span>
+              <span>OCR</span><span>Consumer Analytics</span><span>Data Collection</span>
             </div>
           </div>
         </a>
 
         <!-- P08 -->
         <a class="project-card" href="project-08.html" target="_blank">
-          <div class="project-thumb"><img src="images/p08_thumb.png" alt="LINE CRM"><span
-              class="project-badge">CRM</span></div>
+          <div class="project-thumb"><img src="images/p08_thumb.png" alt="LINE CRM"><span class="project-badge">LINE
+              Ecosystem</span></div>
           <div class="project-body">
-            <div class="project-domain">CRM / LINE</div>
-            <div class="project-name">LINE 串聯企業 CRM</div>
-            <div class="project-desc">深度整合 LINE 與企業 CRM，實現分眾精準推播與個人化標籤行銷。</div>
+            <div class="project-domain">LINE / CRM</div>
+            <div class="project-name">LINE串聯企業CRM及會員整合</div>
+            <div class="project-desc">透過 LINE OA整合企業CRM，實現精準分眾行銷與個人化標籤自動化推播機制。</div>
             <div class="project-tags">
-              <span>LINE</span><span>CRM</span>
+              <span>LINE CRM</span><span>Marketing</span>
             </div>
           </div>
         </a>
@@ -911,11 +1006,11 @@
           <div class="project-thumb"><img src="images/p09_thumb.png" alt="F&B Branding"><span
               class="project-badge">Branding</span></div>
           <div class="project-body">
-            <div class="project-domain">Branding / CMS</div>
-            <div class="project-name">連鎖餐飲品牌官網</div>
-            <div class="project-desc">重塑品牌數位形象，整合 RWD 與 CMS，提升加盟與門市找店轉化。</div>
+            <div class="project-domain">Branding / Web</div>
+            <div class="project-name">連鎖餐飲品牌官網建置</div>
+            <div class="project-desc">重塑品牌官網視覺與 CMS 架構，優化行動端體驗與達成菜單及網站資訊的即時更新。</div>
             <div class="project-tags">
-              <span>Branding</span><span>CMS</span>
+              <span>RWD Branding</span><span>CMS</span>
             </div>
           </div>
         </a>
@@ -934,12 +1029,11 @@
           <h4>產品經理</h4>
           <h5>2023.04 - 2024.03</h5>
           <p class="company">東森股份有限公司 · 社群平台</p>
-          <ul class="desc-list">
-            <li>利用 A/B 測試，針對特定使用者釋出介面內容與功能，以最小幅度影響，了解用戶需求及功能成效。</li>
-            <li>優化新用戶、新功能引導流程並透過連續獎勵制度，增強新用戶體驗、DAU 增長且用戶黏著度提高 20% 。</li>
-            <li>藉由結合七夕行銷活動，設計規劃匿名配對聊天功能，提高用戶互動率。</li>
-            <li>收集並分析 500+ 用戶反饋，優化 APP 介面與功能。</li>
-            <li>主導社群 App 從 0 到上架（Android／iOS），統籌 WebView 與 Native 頁面的功能規格設計，涵蓋會員系統、內容發布、虛擬幣獎勵機制、私訊、通知等核心模組。</li>
+          <ul class="desc-list" style="margin-top: 15px;">
+            <li>主導社群 App 研發與上架，統籌webview與原生頁面的功能規格設計，涵蓋會員系統、內容發佈、虛擬幣獎勵機制、私訊、通知等核心模組。</li>
+            <li>規劃內容雙軌評分系統（自動化預篩 + 人工審核權重），確保產品初期內容品質與合規率維持達90%以上。</li>
+            <li>結合七夕行銷活動需求，定義匿名社交功能規格（聊天室生命週期：建立、逾期、解鎖、關注等），達成活動DAU目標。</li>
+            <li>主導A/B Testing（500+ 用戶反饋），持續優化Onboarding流程、推薦分眾演算法與裂變活動設計。</li>
           </ul>
         </div>
 
@@ -948,10 +1042,8 @@
           <h5>2022.04 - 2023.04</h5>
           <p class="company">好思行銷</p>
           <ul class="desc-list">
-            <li>設計互動行銷模組，解決品牌會員擴增緩慢問題：針對不同產業需求，前後台架構設計可擴充性，供多種互動選擇，使品牌快速提升互動率、搜整並分析客戶輪廓。</li>
-            <li>改版品牌網站，三個月內促進產品銷售增長 20%。</li>
-            <li>規劃聚合交通碼 APP，整合運具服務，實現跨運具預訂和金流串接功能。</li>
-          </ul>
+            <li>設計跨產業互動行銷模組，建立彈性後台架構，協助多家品牌提升會員互動率並系統性累積消費者輪廓數據。</li>
+            <li>主導品牌官網全站改版，三個月內帶動產品銷售增長20%。</li </ul>
         </div>
 
         <div class="resume-item">
@@ -959,8 +1051,8 @@
           <h5>2021.05 - 2021.08</h5>
           <p class="company">17Life 康太數位整合</p>
           <ul class="desc-list">
-            <li>規劃 2B 產品線策略，制定 Roadmap：調研市場以及用戶需求，協調技術、業務與運營團隊後訂定產品規格方向、定期追蹤進度以實踐每次更版目標。</li>
-            <li>將策略變為具體功能，完成商品、訂單、憑證核銷管理內的主要功能：根據用戶需求特性，考量舊有資料架構，新增刪減相關功能，並進行原型設計、易用性測試等，以滿足使用者需求。</li>
+            <li>承接一套需求積壓多時的B2B SaaS商家管理系統，在深度理解既有架構限制的前提下，梳理完整功能優先序。</li>
+            <li>重構商品上下架、訂單管理、現場核銷與帳號權限四大核心模組。</li>
           </ul>
         </div>
 
@@ -969,11 +1061,10 @@
           <h5>2019.11 - 2021.03</h5>
           <p class="company">愛酷智能科技</p>
           <ul class="desc-list">
-            <li>0-1 產品設計，使品牌轉換率提升 25%：參與模組“優惠券發放”的策劃與需求分析，可於後台彈性設定內容並即時彙整各類數據於 dashboard，並用漏斗分析優化前台步驟，提升轉換率，有效帶動營收成長。
-            </li>
-            <li>整合客戶各渠道資料、建置派單系統：整合 CRM 與官網資料數據，規劃訂單派案流程及後台功能，依會員瀏覽歷程、活動參與紀錄智慧推薦行程，為廠商拓展業務項目，也是公司 CDP 產品之雛形。</li>
-            <li>打造 LINE 線上活動，兩個月內提升參與率 20%、高達 20K+ 登錄筆數：對品牌發票登錄活動流程進行分析並找出轉換率低的節點，提出活動建議優化項目。</li>
-            <li>監控並分析專案運營表現，規劃教育訓練課程，給予實用產業案例和活動策略，強化客戶黏著度與合作效益。</li>
+            <li>橫跨行銷模組、企業數位化與 OCR 數據應用三條產品線，以需求分析與流程設計為核心，協助品牌客戶建立數位行銷基礎設施。</li>
+            <li>行銷模組端：從0設計可彈性配置的票券行銷互動模組，協助B2B客戶快速建立活動頁面，並透過LINE OA進行多渠道導流與OMO數據彙整，帶動客戶轉換率提升25%以上。</li>
+            <li>流程數位化端：規劃旅遊業智慧派單系統，將傳統紙本工單全數數位化，整合CRM與官網瀏覽行為後實現人員自動調度；另主導LINE串聯企業CRM架構，推動精準分眾行銷與標籤自動化。</li>
+            <li>OCR數據應用端：設計OCR發票登錄行銷模組，優化活動轉換節點後，單次活動累積20K+筆消費數據，與過往網路活動相比參與率提升30%以上。</li>
           </ul>
         </div>
 
@@ -982,9 +1073,9 @@
           <h5>2019.06 - 2019.11</h5>
           <p class="company">1111 人力銀行</p>
           <ul class="desc-list">
-            <li>優化許久未更新的專區，提升流量至公司前三名。</li>
-            <li>線上活動策劃，專區活動再創高峰：設計線上活動流程、策劃網站與曝光宣傳方式。</li>
-            <li>跨部門合作，優化原架構改善用戶體驗：接手媒體部門遲未啟動的網站專案，建立多方溝通後規劃執行，順利讓延宕許久之網站上線，獲主管公開表揚。</li>
+            <li>接手因跨部門協調不順而長期停滯的網站改版任務，梳理各方需求後建立清楚的決策與溝通節點，最終推動專案上線。</li>
+            <li>主動承接閒置頻道的內容策略優化，重新整理架構與主題方向，帶動流量回升至站內前三名。</li>
+            <li>線上活動策劃方面，兼顧活動流程設計與推廣宣傳規劃，有效提升平台整體的用戶活躍度。</li>
           </ul>
         </div>
 
@@ -993,10 +1084,9 @@
           <h5>2016.09 - 2018.03</h5>
           <p class="company">德叡股份有限公司</p>
           <ul class="desc-list">
-            <li>電商平台 CMS 系統規劃，設計前後台各式行銷優惠活動、大量詢價功能，縮短 20% 訂單流程。</li>
-            <li>針對用戶需求，彙整運行多年的系統問題，協同產品經理設計組成產品，並於兩個月內優化完成。</li>
-            <li>在項目週期緊張和開發資源不充足的情況，通過調整優先級，準時上線率達到 95%。</li>
-            <li>與 PO 共同規劃月度和季度系統項目並確定優先順序，進行時程管理及人力分配。流程優化後，使溝通成本降低、結案率提高 20％ 以上。</li>
+            <li>負責電商平台CMS系統的前後台功能規劃，涵蓋行銷活動配置、優惠設定與大量詢價模組，優化後成功縮短訂單流程20%。</li>
+            <li>主動彙整使用者反饋與多年系統積累問題，與PM協同重新排定優先序，在資源有限的前提下，兩個月內完成核心模組優化並上線。</li>
+            <li>建立月度與季度排程協作機制，維持專案準時上線率95%，整體結案率提升20%以上。</li>
           </ul>
         </div>
       </div>
@@ -1010,6 +1100,11 @@
     </section>
 
   </main>
+
+  <footer class="portfolio-footer">
+    <span>© 2026 江翊蓁 Jane Chiang &nbsp;·&nbsp; PM Portfolio</span>
+    <a href="mailto:jennyjiang6191@gmail.com">jennyjiang6191@gmail.com>
+  </footer>
 
   <script>
     // Scrollspy functionality
